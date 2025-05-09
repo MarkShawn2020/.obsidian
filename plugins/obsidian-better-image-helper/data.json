@@ -1,0 +1,12 @@
+{
+  "defaultService": "aliyun",
+  "services": [
+    {
+      "name": "阿里云OCR",
+      "type": "aliyun",
+      "enabled": true,
+      "accessKey": "LTAI5tDyYs4mwC9nswvLv6Q7",
+      "secretKey": "IlGyU5gaW6rm3EPjrDJWp0LCpXpCMf"
+    }
+  ]
+}

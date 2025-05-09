@@ -1,0 +1,57 @@
+/* for preview mode */
+/* Align image to the right */
+img[src$="#right"] {
+    display: block ;
+    text-align: right ;
+    margin-left: auto ;
+    margin-right: 0 ;
+ }
+ 
+ /* Align image to the center */
+ img[src$="#center"] {
+    display: block ;
+    text-align: center ;
+    margin-left: auto ;
+    margin-right: auto ;
+ }
+ 
+ /* Align image to the left */
+ img[src$="#left"] {
+    display: block ;
+    text-align: left ;
+    margin-left: 0 ;
+    margin-right: auto ;
+ }
+
+ /* Align image to the left */
+ img[src$="#side-by-side"] {
+   display: inline-block;
+   width: 48%;
+   margin-right: 1%;
+}
+
+
+ /* for edit mode */
+ .markdown-source-view.mod-cm6 .cm-content > img[src$="#center"] {
+    display: block ;
+    text-align: center ;
+    margin-left: auto !important;
+    margin-right: auto !important;
+ }
+ .markdown-source-view.mod-cm6 .cm-content > img[src$="#right"] {
+    display: block ;
+    text-align: right ;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+ }
+ .markdown-source-view.mod-cm6 .cm-content > img[src$="#left"] {
+    display: block ;
+    text-align: left ;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+ }
+ .markdown-source-view.mod-cm6 .cm-content > img[src$="#side-by-side"] {
+   display: inline-block;
+   width: 48%;
+   margin-right: 1%;
+}

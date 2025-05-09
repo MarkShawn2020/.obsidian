@@ -1,0 +1,23 @@
+{
+  "bulletType": "number",
+  "indentSize": 2,
+  "updateDelay": 2000,
+  "tocTitle": "本文目录：",
+  "excludedHeadingLevels": [
+    4,
+    5,
+    6
+  ],
+  "excludedHeadingText": [],
+  "excludedChars": [
+    "#",
+    "*",
+    "==",
+    "\\",
+    "_",
+    "`",
+    "{",
+    "}",
+    "~~"
+  ]
+}

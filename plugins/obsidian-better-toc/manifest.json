@@ -1,0 +1,11 @@
+{
+  "id": "obsidian-better-toc",
+  "name": "Better Table of Contents",
+  "author": "Shawn Mark (Fork of Andrew Lisowski's work)",
+  "authorUrl": "https://github.com/markshawn2020",
+  "description": "Create a better table of contents for Obsidian notes with improved compatibility and features.",
+  "isDesktopOnly": false,
+  "minAppVersion": "1.0.0",
+  "version": "1.0.0",
+  "fundingUrl": "https://github.com/markshawn2020"
+}
