@@ -34064,7 +34064,6 @@ async function recognizeImage(imagePath, serviceConfig) {
     }
     return await recognizeFromFile(client, imagePath);
   } catch (error) {
-    console.error("OCR recognition error:", error);
     return {
       success: false,
       text: "",
@@ -34078,7 +34077,6 @@ async function recognizeFromUrl(client, imageUrl) {
   });
   const runtime = new $Util.RuntimeOptions({});
   const response = await client.recognizeGeneralWithOptions(request, runtime);
-  console.log("OCR\u8BC6\u522B\u7ED3\u679C:", response);
   if (response && response.body && response.body.data) {
     return {
       success: true,
@@ -34314,7 +34312,8 @@ var OcrResultModal = class extends import_obsidian2.Modal {
         style: "margin-left: 4px; padding: 2px;"
       }
     });
-    copyPathBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
+    copyPathBtn.addClass("copy-icon");
+    (0, import_obsidian2.setIcon)(copyPathBtn, "copy");
     copyPathBtn.addEventListener("click", async () => {
       await navigator.clipboard.writeText(fullImagePath);
       new import_obsidian2.Notice("\u5DF2\u590D\u5236\u56FE\u7247\u8DEF\u5F84");
@@ -34330,7 +34329,6 @@ var OcrResultModal = class extends import_obsidian2.Modal {
         }
       });
     } catch (e) {
-      console.log("\u65E0\u6CD5\u663E\u793A\u56FE\u7247\u9884\u89C8:", e);
       previewContainer.setText("\u65E0\u6CD5\u663E\u793A\u56FE\u7247\u9884\u89C8");
     }
     const textAreaContainer = contentContainer.createDiv({ cls: "ocr-textarea-container" });
@@ -34412,34 +34410,27 @@ ${text}
 };
 var ImageOcrPlugin = class extends import_obsidian2.Plugin {
   async onload() {
-    console.log("Loading Image OCR Plugin - \u521D\u59CB\u5316\u56FE\u7247OCR\u63D2\u4EF6");
     await this.loadSettings();
     this.addSettingTab(new ImageOcrSettingTab(this.app, this));
     this.registerDomEvent(document, "contextmenu", (evt) => {
       const target = evt.target;
-      console.log("\u53F3\u952E\u70B9\u51FB\u4E8B\u4EF6\u6355\u83B7:", target.tagName, target);
       if (this.isImageElement(target)) {
-        console.log("\u68C0\u6D4B\u5230\u56FE\u7247\u5143\u7D20\u53F3\u952E\uFF0C\u5904\u7406\u4E2D...");
         this.handleImageContextMenu(evt, this.findImageElement(target));
       }
     });
     this.registerEvent(
       this.app.workspace.on("editor-menu", (menu, editor, view) => {
-        console.log("\u7F16\u8F91\u5668\u83DC\u5355\u4E8B\u4EF6\u89E6\u53D1");
         if (view instanceof import_obsidian2.MarkdownView) {
           const cursor = editor.getCursor();
           const line = editor.getLine(cursor.line);
-          console.log("\u5F53\u524D\u5149\u6807\u4F4D\u7F6E:", cursor, "\u5F53\u524D\u884C\u5185\u5BB9:", line);
           const imageRegex = /!\[.*?\]\(.*?\)/;
           if (imageRegex.test(line)) {
             const match = line.match(/!\[.*?\]\((.*?)\)/);
             if (match && match[1]) {
               const imagePath = match[1];
-              console.log("\u68C0\u6D4B\u5230\u56FE\u7247Markdown\u8BED\u6CD5\uFF0C\u56FE\u7247\u8DEF\u5F84:", imagePath);
               this.addOcrMenuOption(menu, imagePath);
             }
           } else {
-            console.log("\u5C1D\u8BD5\u5904\u7406Live Preview\u6A21\u5F0F\u4E0B\u7684\u56FE\u7247\u83DC\u5355");
             this.handleLivePreviewImageMenu(menu, editor, view, cursor);
           }
         }
@@ -34447,21 +34438,16 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
     );
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, file, source) => {
-        console.log("\u6587\u4EF6\u83DC\u5355\u4E8B\u4EF6\u89E6\u53D1:", file == null ? void 0 : file.path);
         if (file instanceof import_obsidian2.TFile) {
           const extension = file.extension;
-          console.log("\u6587\u4EF6\u6269\u5C55\u540D:", extension);
           if (extension && ["png", "jpg", "jpeg", "gif", "webp", "svg"].includes(extension.toLowerCase())) {
-            console.log("\u68C0\u6D4B\u5230\u56FE\u7247\u6587\u4EF6\uFF0C\u6DFB\u52A0OCR\u83DC\u5355\u9009\u9879");
             this.addOcrMenuOption(menu, file.path);
           }
         }
       })
     );
-    console.log("Image OCR Plugin \u52A0\u8F7D\u5B8C\u6210 - \u7248\u672C 1.0.0");
   }
   onunload() {
-    console.log("Unloading Image OCR Plugin - \u5378\u8F7D\u56FE\u7247OCR\u63D2\u4EF6");
   }
   /**
    * 加载设置
@@ -34481,17 +34467,13 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
   handleLivePreviewImageMenu(menu, editor, view, cursor) {
     try {
       const editorEl = view.containerEl.querySelector(".cm-editor");
-      console.log("Live Preview\u7F16\u8F91\u5668\u5143\u7D20:", editorEl);
       if (editorEl) {
         const images = editorEl.querySelectorAll("img");
-        console.log("\u7F16\u8F91\u5668\u4E2D\u627E\u5230\u7684\u56FE\u7247\u6570\u91CF:", images.length);
         if (images && images.length > 0) {
           for (let i = 0; i < images.length; i++) {
             const img = images[i];
             const imgSrc = img.getAttribute("src");
-            console.log(`\u56FE\u7247[${i}]\u7684\u8DEF\u5F84:`, imgSrc);
             if (imgSrc) {
-              console.log("\u5728Live Preview\u6A21\u5F0F\u4E0B\u6DFB\u52A0OCR\u83DC\u5355\u9009\u9879");
               this.addOcrMenuOption(menu, imgSrc);
               break;
             }
@@ -34499,7 +34481,6 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
         }
       }
     } catch (error) {
-      console.error("Live Preview\u5904\u7406\u56FE\u7247\u83DC\u5355\u65F6\u51FA\u9519:", error);
     }
   }
   /**
@@ -34507,23 +34488,19 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
    */
   isImageElement(element) {
     if (element.tagName.toLowerCase() === "img") {
-      console.log("\u76F4\u63A5\u68C0\u6D4B\u5230\u56FE\u7247\u5143\u7D20");
       return true;
     }
     const img = element.querySelector("img");
     if (img) {
-      console.log("\u68C0\u6D4B\u5230\u5305\u542B\u56FE\u7247\u7684\u5BB9\u5668\u5143\u7D20");
       return true;
     }
     const parent = element.parentElement;
     if (parent) {
       if (parent.tagName.toLowerCase() === "img") {
-        console.log("\u68C0\u6D4B\u5230\u7236\u5143\u7D20\u4E3A\u56FE\u7247");
         return true;
       }
       const parentImg = parent.querySelector("img");
       if (parentImg) {
-        console.log("\u68C0\u6D4B\u5230\u7236\u5143\u7D20\u5305\u542B\u56FE\u7247");
         return true;
       }
     }
@@ -34534,28 +34511,23 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
    */
   findImageElement(element) {
     if (element.tagName.toLowerCase() === "img") {
-      console.log("\u76EE\u6807\u5DF2\u7ECF\u662F\u56FE\u7247\u5143\u7D20");
       return element;
     }
     const img = element.querySelector("img");
     if (img) {
-      console.log("\u5728\u5B50\u5143\u7D20\u4E2D\u627E\u5230\u56FE\u7247");
       return img;
     }
     let parent = element.parentElement;
     while (parent) {
       if (parent.tagName.toLowerCase() === "img") {
-        console.log("\u5728\u7236\u5143\u7D20\u94FE\u4E2D\u627E\u5230\u56FE\u7247\u5143\u7D20");
         return parent;
       }
       const parentImg = parent.querySelector("img");
       if (parentImg) {
-        console.log("\u5728\u7236\u5143\u7D20\u4E2D\u627E\u5230\u56FE\u7247");
         return parentImg;
       }
       parent = parent.parentElement;
     }
-    console.log("\u672A\u627E\u5230\u5173\u8054\u56FE\u7247\uFF0C\u8FD4\u56DE\u539F\u59CB\u5143\u7D20");
     return element;
   }
   /**
@@ -34564,14 +34536,11 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
   handleImageContextMenu(evt, imgElement) {
     const imgSrc = imgElement.getAttribute("src");
     if (!imgSrc) {
-      console.log("\u56FE\u7247\u6CA1\u6709src\u5C5E\u6027\uFF0C\u65E0\u6CD5\u5904\u7406");
       return;
     }
-    console.log("\u5904\u7406\u56FE\u7247\u53F3\u952E\u83DC\u5355\uFF0C\u56FE\u7247\u8DEF\u5F84:", imgSrc);
     const menu = new import_obsidian2.Menu();
     this.addOcrMenuOption(menu, imgSrc);
     menu.showAtPosition({ x: evt.clientX, y: evt.clientY });
-    console.log("\u663E\u793A\u81EA\u5B9A\u4E49\u83DC\u5355\uFF0C\u4F4D\u7F6E:", evt.clientX, evt.clientY);
     evt.preventDefault();
     evt.stopPropagation();
   }
@@ -34579,7 +34548,6 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
    * Add OCR menu option to the given menu
    */
   addOcrMenuOption(menu, imagePath) {
-    console.log("\u6DFB\u52A0OCR\u83DC\u5355\u9009\u9879\uFF0C\u56FE\u7247\u8DEF\u5F84:", imagePath);
     const defaultServiceType = this.settings.defaultService;
     const service = this.settings.services.find((s) => s.type === defaultServiceType && s.enabled);
     if (!service) {
@@ -34593,7 +34561,6 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
     }
     menu.addItem((item) => {
       item.setTitle(`OCR \u8BC6\u522B\u56FE\u7247\u6587\u5B57 (${service.name})`).setIcon("file-scan").onClick(async () => {
-        console.log("OCR\u9009\u9879\u88AB\u70B9\u51FB\uFF0C\u5F00\u59CB\u5904\u7406\u56FE\u7247:", imagePath);
         await this.performOcr(imagePath, service);
       });
     });
@@ -34619,48 +34586,33 @@ var ImageOcrPlugin = class extends import_obsidian2.Plugin {
    */
   async performOcr(imagePath, serviceConfig) {
     try {
-      console.log("\u5F00\u59CBOCR\u5904\u7406\u6D41\u7A0B\uFF0C\u539F\u59CB\u8DEF\u5F84:", imagePath);
       const resolvedPath = this.resolveImagePath(imagePath);
-      console.log("\u89E3\u6790\u540E\u7684\u5B8C\u6574\u8DEF\u5F84:", resolvedPath);
       if (!resolvedPath) {
-        console.error("\u65E0\u6CD5\u89E3\u6790\u56FE\u7247\u8DEF\u5F84");
         throw new Error("Could not resolve image path");
       }
-      console.log("\u663E\u793AOCR\u8FDB\u884C\u4E2D\u63D0\u793A");
       const notice = new import_obsidian2.Notice("OCR \u8BC6\u522B\u4E2D...");
-      console.log("\u8C03\u7528\u963F\u91CC\u4E91OCR API...");
       const result = await recognizeImage(resolvedPath, serviceConfig);
-      console.log("OCR\u7ED3\u679C:", result);
       notice.hide();
       if (result.success) {
-        console.log("OCR\u8BC6\u522B\u6210\u529F\uFF0C\u6587\u672C\u957F\u5EA6:", result.text.length);
         await navigator.clipboard.writeText(result.text);
-        console.log("\u8BC6\u522B\u7ED3\u679C\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
         new OcrResultModal(this.app, result.text, imagePath).open();
       } else {
-        console.error("OCR\u8BC6\u522B\u5931\u8D25:", result.error);
         new import_obsidian2.Notice("OCR \u8BC6\u522B\u5931\u8D25: " + result.error, 5e3);
       }
     } catch (error) {
-      console.error("OCR\u5904\u7406\u8FC7\u7A0B\u4E2D\u51FA\u9519:", error);
       new import_obsidian2.Notice(`OCR \u8BC6\u522B\u5931\u8D25: ${error.message}`, 5e3);
-      console.error("OCR error:", error);
     }
   }
   /**
    * Resolve the image path to a full path
    */
   resolveImagePath(imagePath) {
-    console.log("\u89E3\u6790\u56FE\u7247\u8DEF\u5F84:", imagePath);
     if (imagePath.startsWith("http")) {
-      console.log("\u68C0\u6D4B\u5230HTTP URL\uFF0C\u76F4\u63A5\u4F7F\u7528");
       return imagePath;
     }
     const basePath = this.app.vault.adapter.getBasePath();
-    console.log("Vault\u57FA\u7840\u8DEF\u5F84:", basePath);
     const normalizedPath = imagePath.startsWith("/") ? imagePath.substring(1) : imagePath;
     const fullPath = `${basePath}/${normalizedPath}`;
-    console.log("\u751F\u6210\u7684\u5B8C\u6574\u56FE\u7247\u8DEF\u5F84:", fullPath);
     return fullPath;
   }
 };

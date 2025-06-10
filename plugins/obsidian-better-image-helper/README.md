@@ -1,12 +1,12 @@
-# Obsidian Image OCR Plugin
+# Obsidian Plugin - Better Image Helper
 
-> English: This plugin provides OCR (Optical Character Recognition) for images in Obsidian. Right-click on any image to extract text using Alibaba Cloud OCR API. Supports various working modes and elegant result display.
+> English: This plugin provides a comprehensive image helper for Obsidian. Currently features OCR (Optical Character Recognition) for images using Alibaba Cloud OCR API, with plans to add image rotation, scaling, and other operations in future updates. Designed to provide the best possible user experience for image handling in Obsidian.
 
-# Obsidian Image OCR 插件
+# Obsidian 插件 - 更好的图片处理助手
 
-图片 OCR 文字识别插件，在 Obsidian 中右键点击图片即可识别图片中的文字，支持多种工作模式和优雅的结果展示。
+全面的图片助手插件，目前实现了OCR文字识别功能，在Obsidian中右键点击图片即可识别图片中的文字。未来将添加图片旋转、放缩等更多图片处理功能，致力于为Obsidian用户提供最佳的图片处理体验。
 
-![插件预览](https://example.com/preview.png)
+![](20250416171820.png)
 
 ## ✨ 功能特点
 
@@ -36,7 +36,7 @@
 ### 手动安装
 
 1. 下载最新的 release 文件
-2. 解压缩后，将文件夹复制到 Obsidian 插件目录（`.obsidian/plugins/obsidian-image-ocr/`）
+2. 解压缩后，将文件夹复制到 Obsidian 插件目录（`.obsidian/plugins/better-image-helper/`）
 3. 在 Obsidian 设置中启用插件
 
 ## 🔧 配置
@@ -91,6 +91,11 @@
 
 ## 📝 更新日志
 
+### 1.0.4 (2024-04-15)
+- 正式发布到Obsidian官方插件库
+- 优化构建流程
+- 修复了一些问题
+
 ### 0.1.0 (2023-04-15)
 - 新增更美观的 OCR 结果展示窗口
 - 添加实时字符统计功能
@@ -101,6 +106,125 @@
 - 首次发布
 - 支持多种模式下的图片 OCR 识别
 - 基础结果展示和复制功能
+
+## 💻 开发者说明
+
+### 自动化版本发布流程
+
+本项目设置了便捷的自动化版本发布流程，遵循语义化版本规范：
+
+1. **版本脚本配置**：
+   我们在`package.json`中添加了以下脚本:
+   ```json
+   {
+     "scripts": {
+       "release:patch": "pnpm version patch && npm run release:post",
+       "release:minor": "pnpm version minor && npm run release:post",
+       "release:major": "pnpm version major && npm run release:post",
+       "release:post": "git push && git push origin $(git describe --tags --abbrev=0)"
+     }
+   }
+   ```
+
+2. **一键发布命令**：
+   - 发布补丁版本 (例如 1.0.4 → 1.0.5): `pnpm run release:patch`
+   - 发布次要版本 (例如 1.0.4 → 1.1.0): `pnpm run release:minor`
+   - 发布主要版本 (例如 1.0.4 → 2.0.0): `pnpm run release:major`
+
+3. **自动同步的文件**：
+   当运行上述命令时，以下文件会自动更新版本号：
+   - `package.json`：通过pnpm自动更新
+   - `manifest.json`：通过version-bump.mjs脚本更新
+   - `versions.json`：通过version-bump.mjs脚本更新
+
+4. **工作原理**：
+   - 当执行版本更新命令时，`pnpm version`会更新package.json并创建git commit和tag
+   - 然后触发`version`脚本运行`version-bump.mjs`
+   - 该脚本自动更新manifest.json和versions.json中的版本信息
+   - 最后，所有更改和新标签被推送到GitHub，触发GitHub Actions工作流
+   - GitHub Actions自动构建项目并创建新的发布版本
+
+5. **好处**：
+   - 减少手动错误，确保所有文件版本一致
+   - 自动创建标签和发布，简化发布流程
+   - 遵循语义化版本规范，保持版本管理的一致性
+
+### 发布插件到Obsidian官方市场
+
+如果你想参与贡献或者了解如何将此类插件发布到Obsidian官方市场，以下是完整流程：
+
+1. **准备必要文件**：
+   - `manifest.json`：插件的基本信息，确保版本号遵循语义化版本规范
+   - `main.js`：编译后的插件主文件
+   - `styles.css`（可选）：如果插件有自定义样式
+   - `README.md`：插件说明文档
+   - `LICENSE`：开源许可证文件（如MIT）
+
+2. **设置GitHub仓库**：
+   - 确保代码托管在GitHub上
+   - 设置适当的.gitignore，排除node_modules和构建产物
+
+3. **配置GitHub Actions自动发布**：
+   ```yaml
+   name: Release Obsidian plugin
+   
+   on:
+     push:
+       tags: ["*"]
+   
+   permissions:
+     contents: write
+   
+   jobs:
+     build:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+           with:
+             node-version: "18.x"
+         - uses: pnpm/action-setup@v2
+           with:
+             version: 8
+         - name: Install dependencies
+           run: pnpm install
+         - name: Build plugin
+           run: pnpm run build
+         - name: Create release
+           env:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           run: |
+             tag="${GITHUB_REF#refs/tags/}"
+             gh release create "$tag" \
+               --title "$tag" \
+               --notes "Release $tag of the plugin." \
+               dist/main.js dist/manifest.json
+   ```
+
+4. **创建发布版本**：
+   - 确保manifest.json中的版本号与GitHub标签一致
+   - 推送一个与版本号相同的标签，如`git tag -a 1.0.4 -m "Release 1.0.4"`和`git push origin 1.0.4`
+   - GitHub Actions将自动构建并创建发布版本
+
+5. **提交到Obsidian官方插件库**：
+   - Fork [obsidian-releases](https://github.com/obsidianmd/obsidian-releases) 仓库
+   - 在`community-plugins.json`文件末尾添加插件信息：
+     ```json
+     {
+       "id": "better-image-helper",
+       "name": "Image OCR",
+       "author": "markshawn2020",
+       "description": "Better image helper with OCR (via Alibaba Cloud API), future support for rotation, scaling, and other image operations, providing best user experience",
+       "repo": "MarkShawn2020/obsidian-plugin-image-ocr"
+     }
+     ```
+   - 创建PR，标题格式为"Add plugin: Image OCR"
+   - 完成PR模板中的所有检查项
+   - 等待Obsidian团队审核
+
+6. **插件获得批准后**：
+   - 在Obsidian论坛的[Share & showcase](https://forum.obsidian.md/c/share-showcase/9)版块宣布
+   - 在Discord的`#updates`频道宣布（需要开发者角色）
 
 ## 📄 许可证
 

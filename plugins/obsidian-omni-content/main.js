@@ -72884,7 +72884,7 @@ Emphasis
 ==================================
     */
 .note-to-mp strong {
-    color: #222222;
+    color: var(--strong-color);
     font-weight: 600;
 }
 
@@ -78854,7 +78854,8 @@ var TemplateManager = class {
   }
   setup(app) {
     this.app = app;
-    this.templateDir = `${this.app.vault.configDir}/plugins/obsidian-omni-content/templates/`;
+    this.templateDir = `${this.app.vault.configDir}/plugins/obsidian-omni-content/assets/templates/`;
+    logger.info("\u6A21\u677F\u76EE\u5F55:", this.templateDir);
   }
   // 加载所有模板
   async loadTemplates() {
@@ -79187,6 +79188,7 @@ var NotePreview = class extends import_obsidian8.ItemView {
       themeColorCSS = `
 :root {
   --primary-color: ${this.settings.themeColor || "#7852ee"};
+  --theme-color-light: ${this.settings.themeColor || "#7852ee"}aa;
 }
 `;
     }
