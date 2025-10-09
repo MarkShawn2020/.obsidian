@@ -1,0 +1,155 @@
+/*!
+  Theme: Anthropic Light
+  Description: A harmonious, warm code highlighting theme embodying Anthropic's human-centric design philosophy
+  Author: Claude
+  Maintainer: @lovpen
+  Website: https://github.com/anthropics/lovpen
+  License: MIT
+  
+  Design Philosophy:
+  - Warm, unified color temperature for human-friendliness
+  - Clear semantic hierarchy based on code importance
+  - Gentle contrast that reduces eye strain
+  - Colors derived from a cohesive warm palette
+*/
+
+.hljs {
+  background: #F9F9F7;
+  color: #2B2A27;
+  font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(139, 134, 127, 0.1);
+}
+
+/* Level 1: Most Important - Keywords, Control Flow */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-template-tag,
+.hljs-type {
+  color: #C8623F;
+  font-weight: 600;
+}
+
+/* Level 2: Definitions - Functions, Classes, Types */
+.hljs-function .hljs-title,
+.hljs-title.function_,
+.hljs-class .hljs-title,
+.hljs-title.class_,
+.hljs-built_in {
+  color: #D97757;
+  font-weight: 500;
+}
+
+/* Level 3: Data - Strings, Numbers */
+.hljs-string,
+.hljs-doctag {
+  color: #B8956A;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: #A67C52;
+  font-weight: 500;
+}
+
+/* Level 4: Identifiers - Variables, Attributes */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-attr,
+.hljs-name {
+  color: #6B5D4F;
+}
+
+/* Level 5: Structure - Operators, Punctuation */
+.hljs-operator,
+.hljs-punctuation,
+.hljs-symbol {
+  color: #8B7F72;
+}
+
+/* Level 6: Meta/Secondary - Comments, Meta info */
+.hljs-comment,
+.hljs-quote {
+  color: #A09B93;
+  font-style: italic;
+}
+
+.hljs-meta,
+.hljs-meta .hljs-keyword {
+  color: #959088;
+}
+
+/* Special Cases */
+.hljs-tag {
+  color: #C8623F;
+}
+
+.hljs-section,
+.hljs-title {
+  color: #B85C39;
+  font-weight: 600;
+}
+
+.hljs-regexp {
+  color: #9D7A56;
+  background-color: rgba(184, 149, 106, 0.08);
+}
+
+/* Diff highlighting */
+.hljs-addition {
+  color: #8B7F72;
+  background-color: rgba(139, 127, 114, 0.1);
+}
+
+.hljs-deletion {
+  color: #C8623F;
+  background-color: rgba(200, 98, 63, 0.1);
+}
+
+/* Links */
+.hljs-link {
+  color: #D97757;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 0.05em;
+  text-decoration-color: rgba(217, 151, 87, 0.6);
+}
+
+/* Text formatting */
+.hljs-emphasis {
+  font-style: italic;
+  color: #8B7F72;
+}
+
+.hljs-strong {
+  font-weight: 700;
+  color: #6B5D4F;
+}
+
+/* Interactive states */
+.hljs::selection,
+.hljs *::selection {
+  background-color: rgba(217, 151, 87, 0.25);
+  color: inherit;
+}
+
+.hljs:focus {
+  outline: 2px solid #D97757;
+  outline-offset: 2px;
+  border-radius: 0.75rem;
+}
+
+/* Line numbers */
+.hljs .line-number {
+  color: #C4BEB6;
+  border-right: 1px solid #E8E6DC;
+  padding-right: 1.25em;
+  margin-right: 0.75em;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+}

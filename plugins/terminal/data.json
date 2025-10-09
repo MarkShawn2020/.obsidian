@@ -6,7 +6,7 @@
   "exposeInternalModules": true,
   "focusOnNewInstance": true,
   "hideStatusBar": "focused",
-  "interceptLogging": true,
+  "interceptLogging": false,
   "language": "",
   "newInstanceBehavior": "newHorizontalSplit",
   "noticeTimeout": 5,

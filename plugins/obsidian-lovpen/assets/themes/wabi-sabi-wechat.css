@@ -1,0 +1,277 @@
+/* 
+ * Wabi-Sabi 微信兼容版
+ * 保持侘寂美学的同时，确保微信公众号完美支持
+ * 所有样式都可以转换为内联形式
+ */
+
+/* 颜色定义 - 保持原有配色 */
+#render-container {
+	--primary-color: #333f48;
+	--text-primary: #2a2a2a;
+	--text-secondary: #595959;
+	--text-tertiary: #8a8a8a;
+	--background-primary: #fefcf8;
+	--background-secondary: #f7f5f1;
+	--background-tertiary: #f0ede7;
+	--border-primary: #e0ddd6;
+	--accent-warm: #8b7355;
+	--accent-earth: #6b4c3a;
+	--accent-green: #5a6c57;
+}
+
+/* 基础样式 */
+#render-container {
+	font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif CJK JP", serif;
+	font-size: 15px;
+	line-height: 1.75;
+	letter-spacing: 0.025em;
+	color: var(--text-primary);
+	background-color: var(--background-primary);
+	padding: 2em;
+	max-width: 720px;
+	margin: 0 auto;
+}
+
+/* 标题样式 - 使用边框代替伪元素 */
+#render-container h1 {
+	font-size: 2em;
+	font-weight: 300;
+	letter-spacing: 0.15em;
+	margin: 2em 0 1em;
+	padding-bottom: 0.5em;
+	border-bottom: 1px solid var(--border-primary);
+	color: var(--primary-color);
+}
+
+#render-container h2 {
+	font-size: 1.5em;
+	font-weight: 400;
+	margin: 1.8em 0 0.8em;
+	color: var(--text-primary);
+	/* 使用左边框代替伪元素装饰线 */
+	border-left: 3px solid var(--accent-warm);
+	padding-left: 0.8em;
+}
+
+#render-container h3 {
+	font-size: 1.2em;
+	font-weight: 500;
+	margin: 1.5em 0 0.5em;
+	color: var(--text-secondary);
+}
+
+/* 段落 */
+#render-container p {
+	text-indent: 2em;
+	margin: 1em 0;
+}
+
+/* 首段不缩进 */
+#render-container h1 + p,
+#render-container h2 + p,
+#render-container h3 + p,
+#render-container h4 + p,
+#render-container h5 + p,
+#render-container h6 + p,
+#render-container > p:first-child {
+	text-indent: 0;
+}
+
+/* 引用块 - 使用边框和背景代替引号伪元素 */
+#render-container blockquote {
+	padding: 1.2em 1.5em;
+	margin: 1.5em 0;
+	background-color: var(--background-tertiary);
+	border-left: 4px solid var(--accent-warm);
+	border-radius: 0 8px 8px 0;
+	color: var(--text-secondary);
+	font-style: italic;
+	/* 在内容开头添加引号字符 */
+}
+
+#render-container blockquote p:first-child {
+	text-indent: 0;
+}
+
+/* 列表 - 使用实心圆和数字 */
+#render-container ul {
+	list-style-type: disc;
+	padding-left: 2em;
+	margin: 1em 0;
+}
+
+#render-container ul li {
+	color: var(--text-primary);
+	margin: 0.5em 0;
+	/* 使用彩色的列表标记 */
+}
+
+#render-container ul li::marker {
+	color: var(--accent-warm);
+}
+
+#render-container ol {
+	list-style-type: decimal;
+	padding-left: 2em;
+	margin: 1em 0;
+}
+
+#render-container ol li {
+	color: var(--text-primary);
+	margin: 0.5em 0;
+}
+
+#render-container ol li::marker {
+	color: var(--accent-warm);
+	font-weight: 500;
+}
+
+/* 链接 - 使用下划线代替伪元素效果 */
+#render-container a {
+	color: var(--accent-green);
+	text-decoration: none;
+	border-bottom: 2px solid var(--accent-green);
+	padding-bottom: 1px;
+}
+
+/* 代码块 */
+#render-container pre {
+	background-color: var(--background-secondary);
+	border: 1px solid var(--border-primary);
+	border-radius: 6px;
+	padding: 1.2em;
+	margin: 1.5em 0;
+	overflow-x: auto;
+}
+
+#render-container code {
+	font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+	font-size: 0.9em;
+	background-color: var(--background-secondary);
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	color: var(--accent-earth);
+}
+
+#render-container pre code {
+	background-color: transparent;
+	padding: 0;
+	color: var(--text-primary);
+}
+
+/* 表格 */
+#render-container table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5em 0;
+	background-color: var(--background-secondary);
+	border: 1px solid var(--border-primary);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+#render-container th {
+	background-color: var(--background-tertiary);
+	color: var(--text-primary);
+	font-weight: 500;
+	padding: 0.8em 1em;
+	text-align: left;
+	border-bottom: 2px solid var(--border-primary);
+}
+
+#render-container td {
+	padding: 0.8em 1em;
+	border-bottom: 1px solid var(--border-primary);
+}
+
+#render-container tr:last-child td {
+	border-bottom: none;
+}
+
+/* 图片 */
+#render-container img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 1.5em auto;
+	border-radius: 6px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 分隔线 */
+#render-container hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(to right, transparent, var(--border-primary), transparent);
+	margin: 2em 0;
+}
+
+/* 强调文本 */
+#render-container strong {
+	font-weight: 600;
+	color: var(--accent-earth);
+}
+
+#render-container em {
+	font-style: italic;
+	color: var(--text-secondary);
+}
+
+/* 高亮 */
+#render-container mark {
+	background-color: rgba(139, 115, 85, 0.2);
+	padding: 0.1em 0.3em;
+	border-radius: 3px;
+}
+
+/* 特殊的侘寂美学增强 - 使用类名标记特殊元素 */
+#render-container .wabi-sabi-accent {
+	padding: 1em 1.5em;
+	margin: 1.5em 0;
+	background: var(--background-tertiary);
+	border-radius: 6px;
+	border: 1px solid var(--border-primary);
+}
+
+/* Callout样式 */
+#render-container .callout {
+	padding: 1em 1.5em;
+	margin: 1.5em 0;
+	background-color: var(--background-secondary);
+	border-left: 4px solid var(--accent-warm);
+	border-radius: 0 6px 6px 0;
+}
+
+#render-container .callout-title {
+	font-weight: 500;
+	color: var(--accent-earth);
+	margin-bottom: 0.5em;
+}
+
+/* 确保所有颜色值都使用实际值而非CSS变量（微信兼容） */
+@supports not (color: var(--primary-color)) {
+	#render-container {
+		color: #2a2a2a;
+		background-color: #fefcf8;
+	}
+	
+	#render-container h1 {
+		color: #333f48;
+		border-bottom-color: #e0ddd6;
+	}
+	
+	#render-container h2 {
+		border-left-color: #8b7355;
+	}
+	
+	#render-container blockquote {
+		background-color: #f0ede7;
+		border-left-color: #8b7355;
+		color: #595959;
+	}
+	
+	#render-container a {
+		color: #5a6c57;
+		border-bottom-color: #5a6c57;
+	}
+}

@@ -1,22 +1,14 @@
 [
-  "obsidian-enhancing-export",
-  "obsidian-pandoc",
   "text-extractor",
   "image-ocr",
   "image-ocr-shortcut",
   "image-context-menu",
-  "obsidian-better-command-palette",
   "obsidian-image-ocr",
-  "obsidian-image-auto-upload-plugin",
-  "note-to-mp",
-  "better-export-pdf",
-  "terminal",
-  "hugo-codeblock-highlight",
-  "obsidian-paste-image-rename",
-  "obsidian-admonition",
-  "omni-content",
-  "obsidian-better-toc",
-  "insta-toc",
   "obsidian-pangu",
-  "obsidian-regex-replace"
+  "obsidian-image-auto-upload-plugin",
+  "obsidian-regex-replace",
+  "insta-toc",
+  "obsidian-better-toc",
+  "lovpen",
+  "templater-obsidian"
 ]

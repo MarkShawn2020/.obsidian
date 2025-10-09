@@ -1,0 +1,432 @@
+/**
+ * Entrepreneur Journey - Struggle Stage
+ * 探索期：迷雾中前行
+ * 特点：黑色到迷雾灰的纵向渐变，象征创业探索期的不确定性与坚持
+ */
+
+#render-container {
+	/* === 主要颜色变量 === */
+	--primary-color: #6b7280; /* 迷雾灰 */
+	--primary-color-hover: #9ca3af;
+	--primary-color-light: rgba(107, 114, 128, 0.1);
+	--accent-color: #94a3b8;
+	
+	/* === 背景颜色 === */
+	--background-primary: #000000; /* 纯黑背景 */
+	--background-secondary: #0a0a0a;
+	--background-tertiary: #1a1a1a;
+	--background-gradient: linear-gradient(180deg, #000000 0%, #0f0f0f 30%, #1f1f1f 60%, #2f2f2f 100%);
+	
+	/* === 文本颜色 === */
+	--text-primary: #d1d5db;
+	--text-secondary: #9ca3af;
+	--text-tertiary: #6b7280;
+	--text-on-primary: #ffffff;
+	--text-accent: #cbd5e1;
+	
+	/* === 边框颜色 === */
+	--border-color: rgba(107, 114, 128, 0.3);
+	--border-color-light: rgba(107, 114, 128, 0.15);
+	
+	/* === 字体系统 === */
+	--font-family: "Inter", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+	--font-size-base: 16px;
+	--font-size-small: 0.875em;
+	--font-size-large: 1.25em;
+	--font-size-h1: 2.2em;
+	--font-size-h2: 1.7em;
+	--font-size-h3: 1.4em;
+	--font-size-h4: 1.15em;
+	
+	/* === 间距系统 === */
+	--spacing-xs: 0.25em;
+	--spacing-sm: 0.5em;
+	--spacing-md: 1em;
+	--spacing-lg: 1.5em;
+	--spacing-xl: 2em;
+	--spacing-xxl: 3em;
+	
+	/* === 圆角系统 === */
+	--border-radius-sm: 3px;
+	--border-radius-md: 6px;
+	--border-radius-lg: 10px;
+	
+	/* === 阴影系统 === */
+	--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+	--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+	--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+	--shadow-mist: 0 0 40px rgba(107, 114, 128, 0.2);
+	
+	/* === 容器基础样式 === */
+	font-family: var(--font-family);
+	font-size: var(--font-size-base);
+	line-height: 1.7;
+	color: var(--text-primary);
+	background: var(--background-gradient) !important;
+	min-height: 100vh;
+	padding: var(--spacing-xl);
+	position: relative;
+	overflow: hidden;
+}
+
+/* === 迷雾效果 === */
+#render-container::before,
+#render-container::after {
+	content: '';
+	position: absolute;
+	pointer-events: none;
+}
+
+#render-container::before {
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(107, 114, 128, 0.1) 70%);
+	animation: mist-drift 20s ease-in-out infinite;
+	z-index: 0;
+}
+
+#render-container::after {
+	top: -30%;
+	right: -30%;
+	width: 160%;
+	height: 160%;
+	background: radial-gradient(circle at 30% 70%, transparent 40%, rgba(148, 163, 184, 0.08) 80%);
+	animation: mist-drift 25s ease-in-out infinite reverse;
+	z-index: 0;
+}
+
+@keyframes mist-drift {
+	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+	25% { transform: translate(5%, -5%) scale(1.1); opacity: 0.7; }
+	50% { transform: translate(-3%, 3%) scale(0.95); opacity: 0.6; }
+	75% { transform: translate(2%, -2%) scale(1.05); opacity: 0.4; }
+}
+
+/* === 内容容器 === */
+#render-container > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* === 段落样式 === */
+#render-container p {
+	margin: var(--spacing-lg) 0;
+	text-align: justify;
+	color: var(--text-secondary);
+	letter-spacing: 0.02em;
+	opacity: 0.85;
+	transition: all 0.3s ease;
+}
+
+#render-container p:hover {
+	opacity: 1;
+	color: var(--text-primary);
+}
+
+/* === 标题样式 === */
+#render-container h1,
+#render-container h2,
+#render-container h3,
+#render-container h4,
+#render-container h5,
+#render-container h6 {
+	font-weight: 300;
+	color: var(--text-primary);
+	margin: var(--spacing-xl) 0 var(--spacing-md);
+	position: relative;
+	letter-spacing: -0.02em;
+}
+
+/* 标题装饰 - 表示方向的罗盘 */
+#render-container h1::before {
+	content: '⧭';
+	position: absolute;
+	left: -1.5em;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.2em;
+	color: var(--primary-color);
+	opacity: 0.4;
+	animation: compass-spin 10s linear infinite;
+}
+
+@keyframes compass-spin {
+	from { transform: translateY(-50%) rotate(0deg); }
+	to { transform: translateY(-50%) rotate(360deg); }
+}
+
+#render-container h1 {
+	font-size: var(--font-size-h1);
+	font-weight: 200;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--text-accent);
+}
+
+#render-container h2 {
+	font-size: var(--font-size-h2);
+	border-bottom: 1px solid var(--border-color-light);
+	padding-bottom: var(--spacing-sm);
+}
+
+#render-container h3 {
+	font-size: var(--font-size-h3);
+	font-weight: 400;
+}
+
+/* === 链接样式 === */
+#render-container a {
+	color: var(--text-accent);
+	text-decoration: none;
+	position: relative;
+	transition: all 0.3s ease;
+	opacity: 0.8;
+}
+
+#render-container a::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	background: var(--primary-color);
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.3s ease;
+}
+
+#render-container a:hover {
+	opacity: 1;
+	color: var(--text-primary);
+}
+
+#render-container a:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+/* === 引用块样式 === */
+#render-container blockquote {
+	margin: var(--spacing-xl) 0;
+	padding: var(--spacing-lg) var(--spacing-xl);
+	background: rgba(107, 114, 128, 0.05);
+	border-left: 2px solid var(--primary-color);
+	border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+	font-style: italic;
+	color: var(--text-secondary);
+	position: relative;
+}
+
+#render-container blockquote::before {
+	content: '❝';
+	position: absolute;
+	top: var(--spacing-md);
+	left: var(--spacing-md);
+	font-size: 2em;
+	color: var(--primary-color);
+	opacity: 0.3;
+}
+
+/* === 代码块样式 === */
+#render-container pre {
+	background: rgba(0, 0, 0, 0.7);
+	border: 1px solid var(--border-color-light);
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-lg);
+	overflow-x: auto;
+	position: relative;
+	backdrop-filter: blur(10px);
+}
+
+#render-container pre::before {
+	content: 'CODE';
+	position: absolute;
+	top: var(--spacing-sm);
+	right: var(--spacing-sm);
+	font-size: 0.7em;
+	color: var(--primary-color);
+	opacity: 0.4;
+	letter-spacing: 0.2em;
+}
+
+#render-container code {
+	font-family: 'JetBrains Mono', 'Fira Code', 'Monaco', monospace;
+	font-size: 0.9em;
+	color: var(--text-accent);
+	background: rgba(107, 114, 128, 0.1);
+	padding: 2px 6px;
+	border-radius: var(--border-radius-sm);
+}
+
+#render-container pre code {
+	background: none;
+	padding: 0;
+}
+
+/* === 列表样式 === */
+#render-container ul,
+#render-container ol {
+	margin: var(--spacing-md) 0;
+	padding-left: var(--spacing-xl);
+	color: var(--text-secondary);
+}
+
+#render-container li {
+	margin: var(--spacing-sm) 0;
+	position: relative;
+}
+
+#render-container ul li::marker {
+	content: '→ ';
+	color: var(--primary-color);
+	opacity: 0.6;
+}
+
+#render-container ol {
+	counter-reset: list-counter;
+	list-style: none;
+}
+
+#render-container ol li {
+	counter-increment: list-counter;
+}
+
+#render-container ol li::before {
+	content: counter(list-counter, decimal-leading-zero);
+	position: absolute;
+	left: -2em;
+	color: var(--primary-color);
+	opacity: 0.5;
+	font-weight: 300;
+}
+
+/* === 表格样式 === */
+#render-container table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: var(--spacing-xl) 0;
+	backdrop-filter: blur(5px);
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: var(--border-radius-md);
+	overflow: hidden;
+}
+
+#render-container th,
+#render-container td {
+	padding: var(--spacing-md);
+	text-align: left;
+	border-bottom: 1px solid var(--border-color-light);
+}
+
+#render-container th {
+	background: rgba(107, 114, 128, 0.1);
+	color: var(--text-accent);
+	font-weight: 500;
+	text-transform: uppercase;
+	font-size: 0.85em;
+	letter-spacing: 0.1em;
+}
+
+#render-container tr:hover {
+	background: rgba(107, 114, 128, 0.05);
+}
+
+/* === 图片样式 === */
+#render-container img {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--border-radius-md);
+	filter: brightness(0.9) contrast(1.1);
+	transition: all 0.3s ease;
+	box-shadow: var(--shadow-md);
+}
+
+#render-container img:hover {
+	filter: brightness(1) contrast(1);
+	transform: scale(1.02);
+}
+
+/* === 分割线样式 === */
+#render-container hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(90deg, 
+		transparent,
+		var(--border-color-light) 20%,
+		var(--border-color) 50%,
+		var(--border-color-light) 80%,
+		transparent
+	);
+	margin: var(--spacing-xxl) 0;
+	position: relative;
+}
+
+#render-container hr::after {
+	content: '◇';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--primary-color);
+	background: var(--background-primary);
+	padding: 0 var(--spacing-md);
+	opacity: 0.5;
+}
+
+/* === 强调文本 === */
+#render-container strong {
+	color: var(--text-primary);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+}
+
+#render-container em {
+	color: var(--text-accent);
+	font-style: normal;
+	opacity: 0.9;
+	border-bottom: 1px dotted var(--border-color-light);
+}
+
+/* === 特殊卡片样式 === */
+#render-container .callout {
+	background: rgba(107, 114, 128, 0.08);
+	border: 1px solid var(--border-color-light);
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-lg);
+	margin: var(--spacing-xl) 0;
+	position: relative;
+	backdrop-filter: blur(5px);
+}
+
+#render-container .callout::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+/* === 响应式调整 === */
+@media (max-width: 768px) {
+	#render-container {
+		padding: var(--spacing-md);
+		font-size: 14px;
+	}
+	
+	#render-container h1 {
+		font-size: 1.8em;
+	}
+	
+	#render-container h2 {
+		font-size: 1.4em;
+	}
+	
+	#render-container h1::before {
+		display: none;
+	}
+}

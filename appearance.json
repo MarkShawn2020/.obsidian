@@ -3,6 +3,7 @@
   "enabledCssSnippets": [
     "obsidian-snippet",
     "obsidian-snippet_align-image",
-    "custom-admonitions.8c58f3"
+    "custom-admonitions.8c58f3",
+    "image-resize"
   ]
 }

@@ -1,0 +1,361 @@
+/**
+ * Entrepreneur Journey - Genesis Stage
+ * 创世期：黑暗中的火种
+ * 特点：深黑到余烬橙的纵向渐变，象征创业初期的孤独与激情
+ */
+
+#render-container {
+	/* === 主要颜色变量 === */
+	--primary-color: #ff6b35; /* 余烬橙 */
+	--primary-color-hover: #e55a2b;
+	--primary-color-light: rgba(255, 107, 53, 0.1);
+	--accent-color: #ff9558;
+	
+	/* === 背景颜色 === */
+	--background-primary: #0a0a0a; /* 深黑背景 */
+	--background-secondary: #1a1a1a;
+	--background-tertiary: #2a2a2a;
+	--background-gradient: linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #2a1005 100%);
+	
+	/* === 文本颜色 === */
+	--text-primary: #e0e0e0;
+	--text-secondary: #b0b0b0;
+	--text-tertiary: #808080;
+	--text-on-primary: #ffffff;
+	--text-accent: #ff9558;
+	
+	/* === 边框颜色 === */
+	--border-color: rgba(255, 107, 53, 0.2);
+	--border-color-light: rgba(255, 107, 53, 0.1);
+	
+	/* === 字体系统 === */
+	--font-family: "SF Pro Display", "PingFang SC", -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+	--font-size-base: 16px;
+	--font-size-small: 0.875em;
+	--font-size-large: 1.25em;
+	--font-size-h1: 2em;
+	--font-size-h2: 1.6em;
+	--font-size-h3: 1.3em;
+	--font-size-h4: 1.1em;
+	
+	/* === 间距系统 === */
+	--spacing-xs: 0.25em;
+	--spacing-sm: 0.5em;
+	--spacing-md: 1em;
+	--spacing-lg: 1.5em;
+	--spacing-xl: 2em;
+	--spacing-xxl: 3em;
+	
+	/* === 圆角系统 === */
+	--border-radius-sm: 4px;
+	--border-radius-md: 8px;
+	--border-radius-lg: 12px;
+	
+	/* === 阴影系统 === */
+	--shadow-sm: 0 2px 8px rgba(255, 107, 53, 0.1);
+	--shadow-md: 0 4px 16px rgba(255, 107, 53, 0.15);
+	--shadow-lg: 0 8px 32px rgba(255, 107, 53, 0.2);
+	--shadow-glow: 0 0 20px rgba(255, 107, 53, 0.3);
+	
+	/* === 容器基础样式 === */
+	font-family: var(--font-family);
+	font-size: var(--font-size-base);
+	line-height: 1.6;
+	color: var(--text-primary);
+	background: var(--background-gradient) !important;
+	min-height: 100vh;
+	padding: var(--spacing-xl);
+	position: relative;
+	overflow: hidden;
+}
+
+/* === 渐变背景增强 === */
+#render-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* === 内容容器 === */
+#render-container > * {
+	position: relative;
+	z-index: 1;
+}
+
+/* === 段落样式 === */
+#render-container p {
+	margin: var(--spacing-lg) 0;
+	text-align: justify;
+	color: var(--text-primary);
+	opacity: 0.9;
+	transition: opacity 0.3s ease;
+}
+
+#render-container p:hover {
+	opacity: 1;
+}
+
+/* === 标题样式 === */
+#render-container h1,
+#render-container h2,
+#render-container h3,
+#render-container h4,
+#render-container h5,
+#render-container h6 {
+	font-weight: 700;
+	color: var(--text-primary);
+	margin: var(--spacing-xl) 0 var(--spacing-md);
+	position: relative;
+	padding-left: var(--spacing-md);
+}
+
+/* 标题前的火焰装饰 */
+#render-container h1::before,
+#render-container h2::before {
+	content: '🔥';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 0.8em;
+	opacity: 0.7;
+	animation: flicker 2s infinite alternate;
+}
+
+@keyframes flicker {
+	0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+	50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+}
+
+#render-container h1 {
+	font-size: var(--font-size-h1);
+	color: var(--primary-color);
+	text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+}
+
+#render-container h2 {
+	font-size: var(--font-size-h2);
+	color: var(--text-accent);
+}
+
+#render-container h3 {
+	font-size: var(--font-size-h3);
+}
+
+/* === 链接样式 === */
+#render-container a {
+	color: var(--primary-color);
+	text-decoration: none;
+	position: relative;
+	transition: all 0.3s ease;
+}
+
+#render-container a::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+	transition: width 0.3s ease;
+}
+
+#render-container a:hover::after {
+	width: 100%;
+}
+
+#render-container a:hover {
+	color: var(--accent-color);
+	text-shadow: 0 0 10px rgba(255, 149, 88, 0.5);
+}
+
+/* === 引用块样式 === */
+#render-container blockquote {
+	margin: var(--spacing-xl) 0;
+	padding: var(--spacing-lg);
+	background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 107, 53, 0.1) 100%);
+	border-left: 4px solid var(--primary-color);
+	border-radius: var(--border-radius-md);
+	position: relative;
+	overflow: hidden;
+}
+
+#render-container blockquote::before {
+	content: '"';
+	position: absolute;
+	top: -20px;
+	left: 10px;
+	font-size: 4em;
+	color: var(--primary-color);
+	opacity: 0.2;
+}
+
+/* === 代码块样式 === */
+#render-container pre {
+	background: rgba(0, 0, 0, 0.5);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-md);
+	padding: var(--spacing-lg);
+	overflow-x: auto;
+	position: relative;
+	box-shadow: var(--shadow-md);
+}
+
+#render-container pre::before {
+	content: '</>';
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: var(--primary-color);
+	opacity: 0.3;
+	font-weight: bold;
+}
+
+#render-container code {
+	font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+	font-size: 0.9em;
+	color: var(--text-accent);
+	background: rgba(255, 107, 53, 0.1);
+	padding: 2px 6px;
+	border-radius: var(--border-radius-sm);
+}
+
+#render-container pre code {
+	background: none;
+	padding: 0;
+	color: var(--text-primary);
+}
+
+/* === 列表样式 === */
+#render-container ul,
+#render-container ol {
+	margin: var(--spacing-md) 0;
+	padding-left: var(--spacing-xl);
+}
+
+#render-container li {
+	margin: var(--spacing-sm) 0;
+	position: relative;
+}
+
+#render-container ul li::marker {
+	content: '▸ ';
+	color: var(--primary-color);
+}
+
+/* === 表格样式 === */
+#render-container table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: var(--spacing-xl) 0;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: var(--border-radius-md);
+	overflow: hidden;
+	box-shadow: var(--shadow-md);
+}
+
+#render-container th,
+#render-container td {
+	padding: var(--spacing-md);
+	text-align: left;
+	border-bottom: 1px solid var(--border-color);
+}
+
+#render-container th {
+	background: rgba(255, 107, 53, 0.1);
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+#render-container tr:hover {
+	background: rgba(255, 107, 53, 0.05);
+}
+
+/* === 图片样式 === */
+#render-container img {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--border-radius-md);
+	box-shadow: var(--shadow-lg);
+	transition: all 0.3s ease;
+}
+
+#render-container img:hover {
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-glow);
+}
+
+/* === 分割线样式 === */
+#render-container hr {
+	border: none;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+	margin: var(--spacing-xxl) 0;
+	position: relative;
+}
+
+#render-container hr::after {
+	content: '◆';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--primary-color);
+	background: var(--background-primary);
+	padding: 0 var(--spacing-md);
+}
+
+/* === 强调文本 === */
+#render-container strong {
+	color: var(--primary-color);
+	font-weight: 600;
+}
+
+#render-container em {
+	color: var(--text-accent);
+	font-style: italic;
+}
+
+/* === 特殊卡片样式 === */
+#render-container .callout {
+	background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(255, 149, 88, 0.05) 100%);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius-lg);
+	padding: var(--spacing-lg);
+	margin: var(--spacing-xl) 0;
+	position: relative;
+	overflow: hidden;
+}
+
+#render-container .callout::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4px;
+	height: 100%;
+	background: var(--primary-color);
+}
+
+/* === 响应式调整 === */
+@media (max-width: 768px) {
+	#render-container {
+		padding: var(--spacing-md);
+		font-size: 14px;
+	}
+	
+	#render-container h1 {
+		font-size: 1.6em;
+	}
+	
+	#render-container h2 {
+		font-size: 1.3em;
+	}
+}

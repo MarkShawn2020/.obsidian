@@ -1,0 +1,29 @@
+/* CSS 变量定义 - 修改这里的值来调整全局图片大小 */
+:root {
+    --max-image-height: 200px;
+    --max-image-width: none;
+}
+
+/* 限制图片最大高度 */
+.markdown-preview-view img,
+.markdown-source-view img {
+    max-height: var(--max-image-height);
+    max-width: var(--max-image-width);
+    width: auto;
+    object-fit: contain;
+}
+
+/* 编辑模式下的图片 */
+.cm-editor img {
+    max-height: var(--max-image-height);
+    max-width: var(--max-image-width);
+    width: auto;
+}
+
+/* 实时预览模式下的图片 */
+.markdown-reading-view img {
+    max-height: var(--max-image-height);
+    max-width: var(--max-image-width);
+    width: auto;
+    object-fit: contain;
+}

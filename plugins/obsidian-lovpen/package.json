@@ -1,0 +1,9 @@
+{
+  "name": "obsidian-lovpen",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "@css-inline/css-inline": "^0.15.0",
+    "@css-inline/css-inline-darwin-arm64": "^0.15.0"
+  }
+}

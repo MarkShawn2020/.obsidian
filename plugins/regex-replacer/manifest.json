@@ -1,0 +1,11 @@
+{
+  "id": "regex-replacer",
+  "name": "Regex Replacer",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Advanced find and replace functionality with regex support for Obsidian",
+  "author": "Your Name",
+  "authorUrl": "",
+  "fundingUrl": "",
+  "isDesktopOnly": false
+}

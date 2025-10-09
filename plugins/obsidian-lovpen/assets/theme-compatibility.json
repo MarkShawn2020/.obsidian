@@ -1,0 +1,75 @@
+{
+	"version": "1.0.0",
+	"description": "主题微信兼容性配置，定义每个主题在微信公众号平台的适配策略",
+	"compatibility": {
+		"wabi-sabi": {
+			"wechatCompatible": false,
+			"alternativeTheme": "wabi-sabi-wechat",
+			"cssFeatures": {
+				"pseudoElements": true,
+				"cssVariables": true,
+				"absolutePositioning": true,
+				"transforms": true,
+				"mediaQueries": true
+			},
+			"adaptationStrategy": "use-alternative",
+			"notes": "使用大量伪元素和高级CSS特性，建议使用微信兼容版"
+		},
+		"wabi-sabi-wechat": {
+			"wechatCompatible": true,
+			"cssFeatures": {
+				"pseudoElements": false,
+				"cssVariables": true,
+				"absolutePositioning": false,
+				"transforms": false,
+				"mediaQueries": false
+			},
+			"adaptationStrategy": "native",
+			"notes": "专为微信优化的版本，所有样式可完美内联"
+		},
+		"anthropic-style": {
+			"wechatCompatible": true,
+			"cssFeatures": {
+				"pseudoElements": false,
+				"cssVariables": true,
+				"absolutePositioning": false,
+				"transforms": false,
+				"mediaQueries": false
+			},
+			"adaptationStrategy": "native",
+			"notes": "原生支持微信，无需特殊处理"
+		},
+		"bento": {
+			"wechatCompatible": true,
+			"cssFeatures": {
+				"pseudoElements": false,
+				"cssVariables": true
+			},
+			"adaptationStrategy": "native"
+		},
+		"bento-dark": {
+			"wechatCompatible": true,
+			"cssFeatures": {
+				"pseudoElements": false,
+				"cssVariables": true
+			},
+			"adaptationStrategy": "native"
+		}
+	},
+	"defaultCompatibility": {
+		"wechatCompatible": true,
+		"cssFeatures": {
+			"pseudoElements": false,
+			"cssVariables": true
+		},
+		"adaptationStrategy": "fallback-to-basic",
+		"notes": "未配置的主题默认认为基本兼容"
+	},
+	"adaptationStrategies": {
+		"native": "主题原生支持微信，直接使用",
+		"use-alternative": "使用专门的微信兼容版主题",
+		"transform-pseudo": "通过PostCSS转换伪元素",
+		"fallback-to-basic": "降级到基础样式",
+		"custom-transform": "使用自定义转换规则"
+	}
+}
