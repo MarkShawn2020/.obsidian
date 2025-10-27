@@ -1,6 +1,6 @@
 {
-  "findText": "##",
-  "replaceText": "###",
+  "findText": "(#+)\\s+\\*\\*(.*)\\*\\*",
+  "replaceText": "$1 $2",
   "useRegEx": true,
   "selOnly": false,
   "caseInsensitive": false,
