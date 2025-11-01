@@ -12836,7 +12836,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       set2(cssContentAtom, newCSS);
     }
   );
-  const version = "0.21.1";
+  const version = "0.21.2";
   const packageJson = {
     version
   };
@@ -13778,7 +13778,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     const SlotClone = reactExports.forwardRef((props, forwardedRef) => {
       const { children, ...slotProps } = props;
       if (reactExports.isValidElement(children)) {
-        const childrenRef = getElementRef$1(children);
+        const childrenRef = getElementRef$2(children);
         const props2 = mergeProps(slotProps, children.props);
         if (children.type !== reactExports.Fragment) {
           props2.ref = forwardedRef ? composeRefs$1(forwardedRef, childrenRef) : childrenRef;
@@ -13818,7 +13818,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }
     return { ...slotProps, ...overrideProps };
   }
-  function getElementRef$1(element) {
+  function getElementRef$2(element) {
     var _a, _b;
     let getter = (_a = Object.getOwnPropertyDescriptor(element.props, "ref")) == null ? void 0 : _a.get;
     let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
@@ -14040,7 +14040,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     }, [image, crossOrigin, referrerPolicy]);
     return loadingStatus;
   }
-  var Root$5 = Avatar$1;
+  var Root$6 = Avatar$1;
   var Image$1 = AvatarImage$1;
   var Fallback = AvatarFallback$1;
   function r(e) {
@@ -17016,7 +17016,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     ...props
   }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Root$5,
+      Root$6,
       {
         "data-slot": "avatar",
         className: cn(
@@ -17191,10 +17191,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     {
       variants: {
         variant: {
-          default: "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-          destructive: "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          default: "bg-primary text-primary-foreground hover:bg-primary/90",
+          destructive: "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
           outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-          secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+          secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
           ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
           link: "text-primary underline-offset-4 hover:underline"
         },
@@ -17202,7 +17202,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           default: "h-9 px-4 py-2 has-[>svg]:px-3",
           sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
           lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-          icon: "size-9"
+          icon: "size-9",
+          "icon-sm": "size-8",
+          "icon-lg": "size-10"
         }
       },
       defaultVariants: {
@@ -17228,7 +17230,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
     );
   }
-  function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
+  function composeEventHandlers$1(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
     return function handleEvent(event) {
       originalEventHandler == null ? void 0 : originalEventHandler(event);
       if (checkForDefaultPrevented === false || !event.defaultPrevented) {
@@ -17419,9 +17421,9 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
             pointerEvents: isBodyPointerEventsDisabled ? isPointerEventsEnabled ? "auto" : "none" : void 0,
             ...props.style
           },
-          onFocusCapture: composeEventHandlers(props.onFocusCapture, focusOutside.onFocusCapture),
-          onBlurCapture: composeEventHandlers(props.onBlurCapture, focusOutside.onBlurCapture),
-          onPointerDownCapture: composeEventHandlers(
+          onFocusCapture: composeEventHandlers$1(props.onFocusCapture, focusOutside.onFocusCapture),
+          onBlurCapture: composeEventHandlers$1(props.onBlurCapture, focusOutside.onBlurCapture),
+          onPointerDownCapture: composeEventHandlers$1(
             props.onPointerDownCapture,
             pointerDownOutside.onPointerDownCapture
           )
@@ -17526,7 +17528,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
   var AUTOFOCUS_ON_MOUNT = "focusScope.autoFocusOnMount";
   var AUTOFOCUS_ON_UNMOUNT = "focusScope.autoFocusOnUnmount";
-  var EVENT_OPTIONS = { bubbles: false, cancelable: true };
+  var EVENT_OPTIONS$1 = { bubbles: false, cancelable: true };
   var FOCUS_SCOPE_NAME = "FocusScope";
   var FocusScope = reactExports.forwardRef((props, forwardedRef) => {
     const {
@@ -17591,11 +17593,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         const previouslyFocusedElement = document.activeElement;
         const hasFocusedCandidate = container.contains(previouslyFocusedElement);
         if (!hasFocusedCandidate) {
-          const mountEvent = new CustomEvent(AUTOFOCUS_ON_MOUNT, EVENT_OPTIONS);
+          const mountEvent = new CustomEvent(AUTOFOCUS_ON_MOUNT, EVENT_OPTIONS$1);
           container.addEventListener(AUTOFOCUS_ON_MOUNT, onMountAutoFocus);
           container.dispatchEvent(mountEvent);
           if (!mountEvent.defaultPrevented) {
-            focusFirst(removeLinks(getTabbableCandidates(container)), { select: true });
+            focusFirst$1(removeLinks(getTabbableCandidates(container)), { select: true });
             if (document.activeElement === previouslyFocusedElement) {
               focus(container);
             }
@@ -17604,7 +17606,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         return () => {
           container.removeEventListener(AUTOFOCUS_ON_MOUNT, onMountAutoFocus);
           setTimeout(() => {
-            const unmountEvent = new CustomEvent(AUTOFOCUS_ON_UNMOUNT, EVENT_OPTIONS);
+            const unmountEvent = new CustomEvent(AUTOFOCUS_ON_UNMOUNT, EVENT_OPTIONS$1);
             container.addEventListener(AUTOFOCUS_ON_UNMOUNT, onUnmountAutoFocus);
             container.dispatchEvent(unmountEvent);
             if (!unmountEvent.defaultPrevented) {
@@ -17644,7 +17646,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { tabIndex: -1, ...scopeProps, ref: composedRefs, onKeyDown: handleKeyDown });
   });
   FocusScope.displayName = FOCUS_SCOPE_NAME;
-  function focusFirst(candidates, { select = false } = {}) {
+  function focusFirst$1(candidates, { select = false } = {}) {
     const previouslyFocusedElement = document.activeElement;
     for (const candidate of candidates) {
       focus(candidate, { select });
@@ -17734,28 +17736,28 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     return container ? ReactDOM$1.createPortal(/* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...portalProps, ref: forwardedRef }), container) : null;
   });
   Portal$3.displayName = PORTAL_NAME$2;
-  function useStateMachine(initialState, machine) {
+  function useStateMachine$1(initialState, machine) {
     return reactExports.useReducer((state, event) => {
       const nextState = machine[state][event];
       return nextState ?? state;
     }, initialState);
   }
-  var Presence = (props) => {
+  var Presence$1 = (props) => {
     const { present, children } = props;
-    const presence = usePresence(present);
+    const presence = usePresence$1(present);
     const child = typeof children === "function" ? children({ present: presence.isPresent }) : reactExports.Children.only(children);
-    const ref = useComposedRefs$1(presence.ref, getElementRef(child));
+    const ref = useComposedRefs$1(presence.ref, getElementRef$1(child));
     const forceMount = typeof children === "function";
     return forceMount || presence.isPresent ? reactExports.cloneElement(child, { ref }) : null;
   };
-  Presence.displayName = "Presence";
-  function usePresence(present) {
+  Presence$1.displayName = "Presence";
+  function usePresence$1(present) {
     const [node, setNode] = reactExports.useState();
     const stylesRef = reactExports.useRef(null);
     const prevPresentRef = reactExports.useRef(present);
     const prevAnimationNameRef = reactExports.useRef("none");
     const initialState = present ? "mounted" : "unmounted";
-    const [state, send] = useStateMachine(initialState, {
+    const [state, send] = useStateMachine$1(initialState, {
       mounted: {
         UNMOUNT: "unmounted",
         ANIMATION_OUT: "unmountSuspended"
@@ -17769,7 +17771,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }
     });
     reactExports.useEffect(() => {
-      const currentAnimationName = getAnimationName(stylesRef.current);
+      const currentAnimationName = getAnimationName$1(stylesRef.current);
       prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
     }, [state]);
     useLayoutEffect2(() => {
@@ -17778,7 +17780,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       const hasPresentChanged = wasPresent !== present;
       if (hasPresentChanged) {
         const prevAnimationName = prevAnimationNameRef.current;
-        const currentAnimationName = getAnimationName(styles);
+        const currentAnimationName = getAnimationName$1(styles);
         if (present) {
           send("MOUNT");
         } else if (currentAnimationName === "none" || (styles == null ? void 0 : styles.display) === "none") {
@@ -17799,7 +17801,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         let timeoutId;
         const ownerWindow = node.ownerDocument.defaultView ?? window;
         const handleAnimationEnd = (event) => {
-          const currentAnimationName = getAnimationName(stylesRef.current);
+          const currentAnimationName = getAnimationName$1(stylesRef.current);
           const isCurrentAnimation = currentAnimationName.includes(event.animationName);
           if (event.target === node && isCurrentAnimation) {
             send("ANIMATION_END");
@@ -17816,7 +17818,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
         };
         const handleAnimationStart = (event) => {
           if (event.target === node) {
-            prevAnimationNameRef.current = getAnimationName(stylesRef.current);
+            prevAnimationNameRef.current = getAnimationName$1(stylesRef.current);
           }
         };
         node.addEventListener("animationstart", handleAnimationStart);
@@ -17840,10 +17842,10 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       }, [])
     };
   }
-  function getAnimationName(styles) {
+  function getAnimationName$1(styles) {
     return (styles == null ? void 0 : styles.animationName) || "none";
   }
-  function getElementRef(element) {
+  function getElementRef$1(element) {
     var _a, _b;
     let getter = (_a = Object.getOwnPropertyDescriptor(element.props, "ref")) == null ? void 0 : _a.get;
     let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
@@ -18706,11 +18708,11 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
     );
   };
   Dialog$1.displayName = DIALOG_NAME;
-  var TRIGGER_NAME$3 = "DialogTrigger";
+  var TRIGGER_NAME$4 = "DialogTrigger";
   var DialogTrigger = reactExports.forwardRef(
     (props, forwardedRef) => {
       const { __scopeDialog, ...triggerProps } = props;
-      const context = useDialogContext(TRIGGER_NAME$3, __scopeDialog);
+      const context = useDialogContext(TRIGGER_NAME$4, __scopeDialog);
       const composedTriggerRef = useComposedRefs$1(forwardedRef, context.triggerRef);
       return /* @__PURE__ */ jsxRuntimeExports.jsx(
         Primitive.button,
@@ -18722,12 +18724,12 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           "data-state": getState$2(context.open),
           ...triggerProps,
           ref: composedTriggerRef,
-          onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+          onClick: composeEventHandlers$1(props.onClick, context.onOpenToggle)
         }
       );
     }
   );
-  DialogTrigger.displayName = TRIGGER_NAME$3;
+  DialogTrigger.displayName = TRIGGER_NAME$4;
   var PORTAL_NAME$1 = "DialogPortal";
   var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME$1, {
     forceMount: void 0
@@ -18735,7 +18737,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   var DialogPortal$1 = (props) => {
     const { __scopeDialog, forceMount, children, container } = props;
     const context = useDialogContext(PORTAL_NAME$1, __scopeDialog);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeDialog, forceMount, children: reactExports.Children.map(children, (child) => /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children: child }) })) });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeDialog, forceMount, children: reactExports.Children.map(children, (child) => /* @__PURE__ */ jsxRuntimeExports.jsx(Presence$1, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, container, children: child }) })) });
   };
   DialogPortal$1.displayName = PORTAL_NAME$1;
   var OVERLAY_NAME = "DialogOverlay";
@@ -18744,7 +18746,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       const portalContext = usePortalContext(OVERLAY_NAME, props.__scopeDialog);
       const { forceMount = portalContext.forceMount, ...overlayProps } = props;
       const context = useDialogContext(OVERLAY_NAME, props.__scopeDialog);
-      return context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
+      return context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(Presence$1, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
     }
   );
   DialogOverlay$1.displayName = OVERLAY_NAME;
@@ -18768,19 +18770,19 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
       );
     }
   );
-  var CONTENT_NAME$4 = "DialogContent";
+  var CONTENT_NAME$5 = "DialogContent";
   var DialogContent$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
-      const portalContext = usePortalContext(CONTENT_NAME$4, props.__scopeDialog);
+      const portalContext = usePortalContext(CONTENT_NAME$5, props.__scopeDialog);
       const { forceMount = portalContext.forceMount, ...contentProps } = props;
-      const context = useDialogContext(CONTENT_NAME$4, props.__scopeDialog);
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
+      const context = useDialogContext(CONTENT_NAME$5, props.__scopeDialog);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence$1, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
     }
   );
-  DialogContent$1.displayName = CONTENT_NAME$4;
+  DialogContent$1.displayName = CONTENT_NAME$5;
   var DialogContentModal = reactExports.forwardRef(
     (props, forwardedRef) => {
-      const context = useDialogContext(CONTENT_NAME$4, props.__scopeDialog);
+      const context = useDialogContext(CONTENT_NAME$5, props.__scopeDialog);
       const contentRef = reactExports.useRef(null);
       const composedRefs = useComposedRefs$1(forwardedRef, context.contentRef, contentRef);
       reactExports.useEffect(() => {
@@ -18794,18 +18796,18 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           ref: composedRefs,
           trapFocus: context.open,
           disableOutsidePointerEvents: true,
-          onCloseAutoFocus: composeEventHandlers(props.onCloseAutoFocus, (event) => {
+          onCloseAutoFocus: composeEventHandlers$1(props.onCloseAutoFocus, (event) => {
             var _a;
             event.preventDefault();
             (_a = context.triggerRef.current) == null ? void 0 : _a.focus();
           }),
-          onPointerDownOutside: composeEventHandlers(props.onPointerDownOutside, (event) => {
+          onPointerDownOutside: composeEventHandlers$1(props.onPointerDownOutside, (event) => {
             const originalEvent = event.detail.originalEvent;
             const ctrlLeftClick = originalEvent.button === 0 && originalEvent.ctrlKey === true;
             const isRightClick = originalEvent.button === 2 || ctrlLeftClick;
             if (isRightClick) event.preventDefault();
           }),
-          onFocusOutside: composeEventHandlers(
+          onFocusOutside: composeEventHandlers$1(
             props.onFocusOutside,
             (event) => event.preventDefault()
           )
@@ -18815,7 +18817,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   );
   var DialogContentNonModal = reactExports.forwardRef(
     (props, forwardedRef) => {
-      const context = useDialogContext(CONTENT_NAME$4, props.__scopeDialog);
+      const context = useDialogContext(CONTENT_NAME$5, props.__scopeDialog);
       const hasInteractedOutsideRef = reactExports.useRef(false);
       const hasPointerDownOutsideRef = reactExports.useRef(false);
       return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -18858,7 +18860,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   var DialogContentImpl = reactExports.forwardRef(
     (props, forwardedRef) => {
       const { __scopeDialog, trapFocus, onOpenAutoFocus, onCloseAutoFocus, ...contentProps } = props;
-      const context = useDialogContext(CONTENT_NAME$4, __scopeDialog);
+      const context = useDialogContext(CONTENT_NAME$5, __scopeDialog);
       const contentRef = reactExports.useRef(null);
       const composedRefs = useComposedRefs$1(forwardedRef, contentRef);
       useFocusGuards();
@@ -18922,7 +18924,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
           type: "button",
           ...closeProps,
           ref: forwardedRef,
-          onClick: composeEventHandlers(props.onClick, () => context.onOpenChange(false))
+          onClick: composeEventHandlers$1(props.onClick, () => context.onOpenChange(false))
         }
       );
     }
@@ -18933,7 +18935,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
   var TITLE_WARNING_NAME = "DialogTitleWarning";
   var [WarningProvider, useWarningContext] = createContext2(TITLE_WARNING_NAME, {
-    contentName: CONTENT_NAME$4,
+    contentName: CONTENT_NAME$5,
     titleName: TITLE_NAME,
     docsSlug: "dialog"
   });
@@ -18966,10 +18968,10 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }, [MESSAGE, contentRef, descriptionId]);
     return null;
   };
-  var Root$4 = Dialog$1;
+  var Root$5 = Dialog$1;
   var Portal$2 = DialogPortal$1;
   var Overlay$1 = DialogOverlay$1;
-  var Content$3 = DialogContent$1;
+  var Content$4 = DialogContent$1;
   var Title = DialogTitle$1;
   var Description = DialogDescription;
   var Close = DialogClose;
@@ -19732,7 +19734,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       restorePositionSetting
     };
   }
-  function Root$3({ open: openProp, onOpenChange, children, onDrag: onDragProp, onRelease: onReleaseProp, snapPoints, shouldScaleBackground = false, setBackgroundColorOnScale = true, closeThreshold = CLOSE_THRESHOLD, scrollLockTimeout = SCROLL_LOCK_TIMEOUT, dismissible = true, handleOnly = false, fadeFromIndex = snapPoints && snapPoints.length - 1, activeSnapPoint: activeSnapPointProp, setActiveSnapPoint: setActiveSnapPointProp, fixed, modal = true, onClose, nested, noBodyStyles = false, direction = "bottom", defaultOpen = false, disablePreventScroll = true, snapToSequentialPoint = false, preventScrollRestoration = false, repositionInputs = true, onAnimationEnd, container, autoFocus = false }) {
+  function Root$4({ open: openProp, onOpenChange, children, onDrag: onDragProp, onRelease: onReleaseProp, snapPoints, shouldScaleBackground = false, setBackgroundColorOnScale = true, closeThreshold = CLOSE_THRESHOLD, scrollLockTimeout = SCROLL_LOCK_TIMEOUT, dismissible = true, handleOnly = false, fadeFromIndex = snapPoints && snapPoints.length - 1, activeSnapPoint: activeSnapPointProp, setActiveSnapPoint: setActiveSnapPointProp, fixed, modal = true, onClose, nested, noBodyStyles = false, direction = "bottom", defaultOpen = false, disablePreventScroll = true, snapToSequentialPoint = false, preventScrollRestoration = false, repositionInputs = true, onAnimationEnd, container, autoFocus = false }) {
     var _drawerRef_current, _drawerRef_current1;
     const [isOpen = false, setIsOpen] = useControllableState({
       defaultProp: defaultOpen,
@@ -20160,7 +20162,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }, [
       modal
     ]);
-    return /* @__PURE__ */ React$3.createElement(Root$4, {
+    return /* @__PURE__ */ React$3.createElement(Root$5, {
       defaultOpen,
       onOpenChange: (open) => {
         if (!dismissible && !open) return;
@@ -20227,7 +20229,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     });
   });
   Overlay.displayName = "Drawer.Overlay";
-  const Content$2 = /* @__PURE__ */ React$3.forwardRef(function({ onPointerDownOutside, style: style2, onOpenAutoFocus, ...rest }, ref) {
+  const Content$3 = /* @__PURE__ */ React$3.forwardRef(function({ onPointerDownOutside, style: style2, onOpenAutoFocus, ...rest }, ref) {
     const { drawerRef, onPress, onRelease, onDrag, keyboardIsOpen, snapPointsOffset, activeSnapPointIndex, modal, isOpen, direction, snapPoints, container, handleOnly, shouldAnimate, autoFocus } = useDrawerContext();
     const [delayedSnapPoints, setDelayedSnapPoints] = React$3.useState(false);
     const composedRef = useComposedRefs(ref, drawerRef);
@@ -20271,7 +20273,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       wasBeyondThePointRef.current = false;
       onRelease(event);
     }
-    return /* @__PURE__ */ React$3.createElement(Content$3, {
+    return /* @__PURE__ */ React$3.createElement(Content$4, {
       "data-vaul-drawer-direction": direction,
       "data-vaul-drawer": "",
       "data-vaul-delayed-snap-points": delayedSnapPoints ? "true" : "false",
@@ -20351,7 +20353,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       }
     });
   });
-  Content$2.displayName = "Drawer.Content";
+  Content$3.displayName = "Drawer.Content";
   const LONG_HANDLE_PRESS_TIMEOUT = 250;
   const DOUBLE_TAP_TIMEOUT = 120;
   const Handle = /* @__PURE__ */ React$3.forwardRef(function({ preventCycle = false, children, ...rest }, ref) {
@@ -20431,7 +20433,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     });
   }
   const Drawer$1 = {
-    Root: Root$3,
+    Root: Root$4,
     Overlay,
     Portal: Portal$1,
     Title,
@@ -22520,7 +22522,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     );
   });
   Arrow$1.displayName = NAME$2;
-  var Root$2 = Arrow$1;
+  var Root$3 = Arrow$1;
   function useSize(element) {
     const [size2, setSize] = reactExports.useState(void 0);
     useLayoutEffect2(() => {
@@ -22578,8 +22580,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }
   );
   PopperAnchor.displayName = ANCHOR_NAME;
-  var CONTENT_NAME$3 = "PopperContent";
-  var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$3);
+  var CONTENT_NAME$4 = "PopperContent";
+  var [PopperContentProvider, useContentContext] = createPopperContext(CONTENT_NAME$4);
   var PopperContent = reactExports.forwardRef(
     (props, forwardedRef) => {
       var _a, _b, _c, _d, _e, _f;
@@ -22599,7 +22601,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         onPlaced,
         ...contentProps
       } = props;
-      const context = usePopperContext(CONTENT_NAME$3, __scopePopper);
+      const context = usePopperContext(CONTENT_NAME$4, __scopePopper);
       const [content, setContent] = reactExports.useState(null);
       const composedRefs = useComposedRefs$1(forwardedRef, (node) => setContent(node));
       const [arrow$12, setArrow] = reactExports.useState(null);
@@ -22722,7 +22724,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       );
     }
   );
-  PopperContent.displayName = CONTENT_NAME$3;
+  PopperContent.displayName = CONTENT_NAME$4;
   var ARROW_NAME$1 = "PopperArrow";
   var OPPOSITE_SIDE = {
     top: "bottom",
@@ -22762,7 +22764,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
             visibility: contentContext.shouldHideArrow ? "hidden" : void 0
           },
           children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Root$2,
+            Root$3,
             {
               ...arrowProps,
               ref: forwardedRef,
@@ -22817,9 +22819,9 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const [side, align = "center"] = placement.split("-");
     return [side, align];
   }
-  var Root2$2 = Popper;
+  var Root2$3 = Popper;
   var Anchor = PopperAnchor;
-  var Content$1 = PopperContent;
+  var Content$2 = PopperContent;
   var Arrow = PopperArrow;
   function usePrevious(value) {
     const ref = reactExports.useRef({ value, previous: value });
@@ -22861,9 +22863,9 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   var OPEN_KEYS = [" ", "Enter", "ArrowUp", "ArrowDown"];
   var SELECTION_KEYS = [" ", "Enter"];
   var SELECT_NAME = "Select";
-  var [Collection$1, useCollection$1, createCollectionScope$1] = createCollection(SELECT_NAME);
+  var [Collection$2, useCollection$2, createCollectionScope$2] = createCollection(SELECT_NAME);
   var [createSelectContext, createSelectScope] = createContextScope(SELECT_NAME, [
-    createCollectionScope$1,
+    createCollectionScope$2,
     createPopperScope
   ]);
   var usePopperScope = createPopperScope();
@@ -22907,7 +22909,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const isFormControl = trigger ? form || !!trigger.closest("form") : true;
     const [nativeOptionsSet, setNativeOptionsSet] = reactExports.useState(/* @__PURE__ */ new Set());
     const nativeSelectKey = Array.from(nativeOptionsSet).map((option) => option.props.value).join(";");
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$2, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$3, { ...popperScope, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       SelectProvider,
       {
         required,
@@ -22927,7 +22929,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         triggerPointerDownPosRef,
         disabled,
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Provider, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$2.Provider, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             SelectNativeOptionsProvider,
             {
               scope: props.__scopeSelect,
@@ -22968,15 +22970,15 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     ) });
   };
   Select$1.displayName = SELECT_NAME;
-  var TRIGGER_NAME$2 = "SelectTrigger";
+  var TRIGGER_NAME$3 = "SelectTrigger";
   var SelectTrigger$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
       const { __scopeSelect, disabled = false, ...triggerProps } = props;
       const popperScope = usePopperScope(__scopeSelect);
-      const context = useSelectContext(TRIGGER_NAME$2, __scopeSelect);
+      const context = useSelectContext(TRIGGER_NAME$3, __scopeSelect);
       const isDisabled = context.disabled || disabled;
       const composedRefs = useComposedRefs$1(forwardedRef, context.onTriggerChange);
-      const getItems = useCollection$1(__scopeSelect);
+      const getItems = useCollection$2(__scopeSelect);
       const pointerTypeRef = reactExports.useRef("touch");
       const [searchRef, handleTypeaheadSearch, resetTypeahead] = useTypeaheadSearch((search) => {
         const enabledItems = getItems().filter((item) => !item.disabled);
@@ -23014,13 +23016,13 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
           "data-placeholder": shouldShowPlaceholder(context.value) ? "" : void 0,
           ...triggerProps,
           ref: composedRefs,
-          onClick: composeEventHandlers(triggerProps.onClick, (event) => {
+          onClick: composeEventHandlers$1(triggerProps.onClick, (event) => {
             event.currentTarget.focus();
             if (pointerTypeRef.current !== "mouse") {
               handleOpen(event);
             }
           }),
-          onPointerDown: composeEventHandlers(triggerProps.onPointerDown, (event) => {
+          onPointerDown: composeEventHandlers$1(triggerProps.onPointerDown, (event) => {
             pointerTypeRef.current = event.pointerType;
             const target = event.target;
             if (target.hasPointerCapture(event.pointerId)) {
@@ -23031,7 +23033,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
               event.preventDefault();
             }
           }),
-          onKeyDown: composeEventHandlers(triggerProps.onKeyDown, (event) => {
+          onKeyDown: composeEventHandlers$1(triggerProps.onKeyDown, (event) => {
             const isTypingAhead = searchRef.current !== "";
             const isModifierKey = event.ctrlKey || event.altKey || event.metaKey;
             if (!isModifierKey && event.key.length === 1) handleTypeaheadSearch(event.key);
@@ -23045,7 +23047,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       ) });
     }
   );
-  SelectTrigger$1.displayName = TRIGGER_NAME$2;
+  SelectTrigger$1.displayName = TRIGGER_NAME$3;
   var VALUE_NAME = "SelectValue";
   var SelectValue$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
@@ -23082,10 +23084,10 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$3, { asChild: true, ...props });
   };
   SelectPortal.displayName = PORTAL_NAME;
-  var CONTENT_NAME$2 = "SelectContent";
+  var CONTENT_NAME$3 = "SelectContent";
   var SelectContent$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
-      const context = useSelectContext(CONTENT_NAME$2, props.__scopeSelect);
+      const context = useSelectContext(CONTENT_NAME$3, props.__scopeSelect);
       const [fragment, setFragment] = reactExports.useState();
       useLayoutEffect2(() => {
         setFragment(new DocumentFragment());
@@ -23093,16 +23095,16 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       if (!context.open) {
         const frag = fragment;
         return frag ? reactDomExports.createPortal(
-          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentProvider, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: props.children }) }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentProvider, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$2.Slot, { scope: props.__scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: props.children }) }) }),
           frag
         ) : null;
       }
       return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContentImpl, { ...props, ref: forwardedRef });
     }
   );
-  SelectContent$1.displayName = CONTENT_NAME$2;
+  SelectContent$1.displayName = CONTENT_NAME$3;
   var CONTENT_MARGIN = 10;
-  var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$2);
+  var [SelectContentProvider, useSelectContentContext] = createSelectContext(CONTENT_NAME$3);
   var CONTENT_IMPL_NAME = "SelectContentImpl";
   var Slot = /* @__PURE__ */ createSlot("SelectContent.RemoveScroll");
   var SelectContentImpl = reactExports.forwardRef(
@@ -23128,7 +23130,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         //
         ...contentProps
       } = props;
-      const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
+      const context = useSelectContext(CONTENT_NAME$3, __scopeSelect);
       const [content, setContent] = reactExports.useState(null);
       const [viewport, setViewport] = reactExports.useState(null);
       const composedRefs = useComposedRefs$1(forwardedRef, (node) => setContent(node));
@@ -23136,7 +23138,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       const [selectedItemText, setSelectedItemText] = reactExports.useState(
         null
       );
-      const getItems = useCollection$1(__scopeSelect);
+      const getItems = useCollection$2(__scopeSelect);
       const [isPositioned, setIsPositioned] = reactExports.useState(false);
       const firstValidItemFoundRef = reactExports.useRef(false);
       reactExports.useEffect(() => {
@@ -23276,7 +23278,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
               onMountAutoFocus: (event) => {
                 event.preventDefault();
               },
-              onUnmountAutoFocus: composeEventHandlers(onCloseAutoFocus, (event) => {
+              onUnmountAutoFocus: composeEventHandlers$1(onCloseAutoFocus, (event) => {
                 var _a;
                 (_a = context.trigger) == null ? void 0 : _a.focus({ preventScroll: true });
                 event.preventDefault();
@@ -23310,7 +23312,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
                         outline: "none",
                         ...contentProps.style
                       },
-                      onKeyDown: composeEventHandlers(contentProps.onKeyDown, (event) => {
+                      onKeyDown: composeEventHandlers$1(contentProps.onKeyDown, (event) => {
                         const isModifierKey = event.ctrlKey || event.altKey || event.metaKey;
                         if (event.key === "Tab") event.preventDefault();
                         if (!isModifierKey && event.key.length === 1) handleTypeaheadSearch(event.key);
@@ -23343,12 +23345,12 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   var ITEM_ALIGNED_POSITION_NAME = "SelectItemAlignedPosition";
   var SelectItemAlignedPosition = reactExports.forwardRef((props, forwardedRef) => {
     const { __scopeSelect, onPlaced, ...popperProps } = props;
-    const context = useSelectContext(CONTENT_NAME$2, __scopeSelect);
-    const contentContext = useSelectContentContext(CONTENT_NAME$2, __scopeSelect);
+    const context = useSelectContext(CONTENT_NAME$3, __scopeSelect);
+    const contentContext = useSelectContentContext(CONTENT_NAME$3, __scopeSelect);
     const [contentWrapper, setContentWrapper] = reactExports.useState(null);
     const [content, setContent] = reactExports.useState(null);
     const composedRefs = useComposedRefs$1(forwardedRef, (node) => setContent(node));
-    const getItems = useCollection$1(__scopeSelect);
+    const getItems = useCollection$2(__scopeSelect);
     const shouldExpandOnScrollRef = reactExports.useRef(false);
     const shouldRepositionRef = reactExports.useRef(true);
     const { viewport, selectedItem, selectedItemText, focusSelectedItem } = contentContext;
@@ -23514,7 +23516,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     } = props;
     const popperScope = usePopperScope(__scopeSelect);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Content$1,
+      Content$2,
       {
         ...popperScope,
         ...popperProps,
@@ -23538,7 +23540,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     );
   });
   SelectPopperPosition.displayName = POPPER_POSITION_NAME;
-  var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$2, {});
+  var [SelectViewportProvider, useSelectViewportContext] = createSelectContext(CONTENT_NAME$3, {});
   var VIEWPORT_NAME = "SelectViewport";
   var SelectViewport = reactExports.forwardRef(
     (props, forwardedRef) => {
@@ -23557,7 +23559,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
             nonce
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$2.Slot, { scope: __scopeSelect, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           Primitive.div,
           {
             "data-radix-select-viewport": "",
@@ -23577,7 +23579,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
               overflow: "hidden auto",
               ...viewportProps.style
             },
-            onScroll: composeEventHandlers(viewportProps.onScroll, (event) => {
+            onScroll: composeEventHandlers$1(viewportProps.onScroll, (event) => {
               const viewport = event.currentTarget;
               const { contentWrapper, shouldExpandOnScrollRef } = viewportContext;
               if ((shouldExpandOnScrollRef == null ? void 0 : shouldExpandOnScrollRef.current) && contentWrapper) {
@@ -23607,8 +23609,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }
   );
   SelectViewport.displayName = VIEWPORT_NAME;
-  var GROUP_NAME = "SelectGroup";
-  var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME);
+  var GROUP_NAME$1 = "SelectGroup";
+  var [SelectGroupContextProvider, useSelectGroupContext] = createSelectContext(GROUP_NAME$1);
   var SelectGroup$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
       const { __scopeSelect, ...groupProps } = props;
@@ -23616,7 +23618,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       return /* @__PURE__ */ jsxRuntimeExports.jsx(SelectGroupContextProvider, { scope: __scopeSelect, id: groupId, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { role: "group", "aria-labelledby": groupId, ...groupProps, ref: forwardedRef }) });
     }
   );
-  SelectGroup$1.displayName = GROUP_NAME;
+  SelectGroup$1.displayName = GROUP_NAME$1;
   var LABEL_NAME = "SelectLabel";
   var SelectLabel$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
@@ -23626,8 +23628,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }
   );
   SelectLabel$1.displayName = LABEL_NAME;
-  var ITEM_NAME$1 = "SelectItem";
-  var [SelectItemContextProvider, useSelectItemContext] = createSelectContext(ITEM_NAME$1);
+  var ITEM_NAME$2 = "SelectItem";
+  var [SelectItemContextProvider, useSelectItemContext] = createSelectContext(ITEM_NAME$2);
   var SelectItem$1 = reactExports.forwardRef(
     (props, forwardedRef) => {
       const {
@@ -23637,8 +23639,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         textValue: textValueProp,
         ...itemProps
       } = props;
-      const context = useSelectContext(ITEM_NAME$1, __scopeSelect);
-      const contentContext = useSelectContentContext(ITEM_NAME$1, __scopeSelect);
+      const context = useSelectContext(ITEM_NAME$2, __scopeSelect);
+      const contentContext = useSelectContentContext(ITEM_NAME$2, __scopeSelect);
       const isSelected = context.value === value;
       const [textValue, setTextValue] = reactExports.useState(textValueProp ?? "");
       const [isFocused, setIsFocused] = reactExports.useState(false);
@@ -23674,7 +23676,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
             setTextValue((prevTextValue) => prevTextValue || ((node == null ? void 0 : node.textContent) ?? "").trim());
           }, []),
           children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Collection$1.ItemSlot,
+            Collection$2.ItemSlot,
             {
               scope: __scopeSelect,
               value,
@@ -23693,18 +23695,18 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
                   tabIndex: disabled ? void 0 : -1,
                   ...itemProps,
                   ref: composedRefs,
-                  onFocus: composeEventHandlers(itemProps.onFocus, () => setIsFocused(true)),
-                  onBlur: composeEventHandlers(itemProps.onBlur, () => setIsFocused(false)),
-                  onClick: composeEventHandlers(itemProps.onClick, () => {
+                  onFocus: composeEventHandlers$1(itemProps.onFocus, () => setIsFocused(true)),
+                  onBlur: composeEventHandlers$1(itemProps.onBlur, () => setIsFocused(false)),
+                  onClick: composeEventHandlers$1(itemProps.onClick, () => {
                     if (pointerTypeRef.current !== "mouse") handleSelect();
                   }),
-                  onPointerUp: composeEventHandlers(itemProps.onPointerUp, () => {
+                  onPointerUp: composeEventHandlers$1(itemProps.onPointerUp, () => {
                     if (pointerTypeRef.current === "mouse") handleSelect();
                   }),
-                  onPointerDown: composeEventHandlers(itemProps.onPointerDown, (event) => {
+                  onPointerDown: composeEventHandlers$1(itemProps.onPointerDown, (event) => {
                     pointerTypeRef.current = event.pointerType;
                   }),
-                  onPointerMove: composeEventHandlers(itemProps.onPointerMove, (event) => {
+                  onPointerMove: composeEventHandlers$1(itemProps.onPointerMove, (event) => {
                     var _a;
                     pointerTypeRef.current = event.pointerType;
                     if (disabled) {
@@ -23713,13 +23715,13 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
                       event.currentTarget.focus({ preventScroll: true });
                     }
                   }),
-                  onPointerLeave: composeEventHandlers(itemProps.onPointerLeave, (event) => {
+                  onPointerLeave: composeEventHandlers$1(itemProps.onPointerLeave, (event) => {
                     var _a;
                     if (event.currentTarget === document.activeElement) {
                       (_a = contentContext.onItemLeave) == null ? void 0 : _a.call(contentContext);
                     }
                   }),
-                  onKeyDown: composeEventHandlers(itemProps.onKeyDown, (event) => {
+                  onKeyDown: composeEventHandlers$1(itemProps.onKeyDown, (event) => {
                     var _a;
                     const isTypingAhead = ((_a = contentContext.searchRef) == null ? void 0 : _a.current) !== "";
                     if (isTypingAhead && event.key === " ") return;
@@ -23734,7 +23736,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       );
     }
   );
-  SelectItem$1.displayName = ITEM_NAME$1;
+  SelectItem$1.displayName = ITEM_NAME$2;
   var ITEM_TEXT_NAME = "SelectItemText";
   var SelectItemText = reactExports.forwardRef(
     (props, forwardedRef) => {
@@ -23850,7 +23852,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const { __scopeSelect, onAutoScroll, ...scrollIndicatorProps } = props;
     const contentContext = useSelectContentContext("SelectScrollButton", __scopeSelect);
     const autoScrollTimerRef = reactExports.useRef(null);
-    const getItems = useCollection$1(__scopeSelect);
+    const getItems = useCollection$2(__scopeSelect);
     const clearAutoScrollTimer = reactExports.useCallback(() => {
       if (autoScrollTimerRef.current !== null) {
         window.clearInterval(autoScrollTimerRef.current);
@@ -23872,19 +23874,19 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         ...scrollIndicatorProps,
         ref: forwardedRef,
         style: { flexShrink: 0, ...scrollIndicatorProps.style },
-        onPointerDown: composeEventHandlers(scrollIndicatorProps.onPointerDown, () => {
+        onPointerDown: composeEventHandlers$1(scrollIndicatorProps.onPointerDown, () => {
           if (autoScrollTimerRef.current === null) {
             autoScrollTimerRef.current = window.setInterval(onAutoScroll, 50);
           }
         }),
-        onPointerMove: composeEventHandlers(scrollIndicatorProps.onPointerMove, () => {
+        onPointerMove: composeEventHandlers$1(scrollIndicatorProps.onPointerMove, () => {
           var _a;
           (_a = contentContext.onItemLeave) == null ? void 0 : _a.call(contentContext);
           if (autoScrollTimerRef.current === null) {
             autoScrollTimerRef.current = window.setInterval(onAutoScroll, 50);
           }
         }),
-        onPointerLeave: composeEventHandlers(scrollIndicatorProps.onPointerLeave, () => {
+        onPointerLeave: composeEventHandlers$1(scrollIndicatorProps.onPointerLeave, () => {
           clearAutoScrollTimer();
         })
       }
@@ -23974,7 +23976,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     const isRepeated = search.length > 1 && Array.from(search).every((char) => char === search[0]);
     const normalizedSearch = isRepeated ? search[0] : search;
     const currentItemIndex = currentItem ? items.indexOf(currentItem) : -1;
-    let wrappedItems = wrapArray(items, Math.max(currentItemIndex, 0));
+    let wrappedItems = wrapArray$1(items, Math.max(currentItemIndex, 0));
     const excludeCurrentItem = normalizedSearch.length === 1;
     if (excludeCurrentItem) wrappedItems = wrappedItems.filter((v) => v !== currentItem);
     const nextItem = wrappedItems.find(
@@ -23982,11 +23984,11 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     );
     return nextItem !== currentItem ? nextItem : void 0;
   }
-  function wrapArray(array, startIndex) {
+  function wrapArray$1(array, startIndex) {
     return array.map((_, index2) => array[(startIndex + index2) % array.length]);
   }
-  var Root2$1 = Select$1;
-  var Trigger$1 = SelectTrigger$1;
+  var Root2$2 = Select$1;
+  var Trigger$2 = SelectTrigger$1;
   var Value = SelectValue$1;
   var Icon = SelectIcon;
   var Portal = SelectPortal;
@@ -23994,7 +23996,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   var Viewport = SelectViewport;
   var Group = SelectGroup$1;
   var Label = SelectLabel$1;
-  var Item$1 = SelectItem$1;
+  var Item$2 = SelectItem$1;
   var ItemText = SelectItemText;
   var ItemIndicator = SelectItemIndicator;
   var ScrollUpButton = SelectScrollUpButton$1;
@@ -24003,7 +24005,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   function Select({
     ...props
   }) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$1, { "data-slot": "select", ...props });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root2$2, { "data-slot": "select", ...props });
   }
   function SelectGroup({
     ...props
@@ -24022,7 +24024,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     ...props
   }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      Trigger$1,
+      Trigger$2,
       {
         "data-slot": "select-trigger",
         "data-size": size2,
@@ -24042,6 +24044,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     className,
     children,
     position = "popper",
+    align = "center",
+    sideOffset = 4,
     ...props
   }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -24054,6 +24058,8 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
           className
         ),
         position,
+        align,
+        sideOffset,
         ...props,
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(SelectScrollUpButton, {}),
@@ -24091,7 +24097,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     ...props
   }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      Item$1,
+      Item$2,
       {
         "data-slot": "select-item",
         className: cn(
@@ -25007,7 +25013,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     ] });
   };
   const badgeVariants = cva(
-    "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+    "inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
     {
       variants: {
         variant: {
@@ -25808,60 +25814,578 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       )
     ] });
   };
-  const TabsContext = React$3.createContext(null);
-  const Tabs = ({ value, onValueChange, children }) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(TabsContext.Provider, { value: { value, onValueChange }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-full", children }) });
-  };
-  const TabsList = ({ children, className, style: style2 }) => {
+  function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
+    return function handleEvent(event) {
+      originalEventHandler == null ? void 0 : originalEventHandler(event);
+      if (checkForDefaultPrevented === false || !event.defaultPrevented) {
+        return ourEventHandler == null ? void 0 : ourEventHandler(event);
+      }
+    };
+  }
+  var ENTRY_FOCUS = "rovingFocusGroup.onEntryFocus";
+  var EVENT_OPTIONS = { bubbles: false, cancelable: true };
+  var GROUP_NAME = "RovingFocusGroup";
+  var [Collection$1, useCollection$1, createCollectionScope$1] = createCollection(GROUP_NAME);
+  var [createRovingFocusGroupContext, createRovingFocusGroupScope] = createContextScope(
+    GROUP_NAME,
+    [createCollectionScope$1]
+  );
+  var [RovingFocusProvider, useRovingFocusContext] = createRovingFocusGroupContext(GROUP_NAME);
+  var RovingFocusGroup = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Provider, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Collection$1.Slot, { scope: props.__scopeRovingFocusGroup, children: /* @__PURE__ */ jsxRuntimeExports.jsx(RovingFocusGroupImpl, { ...props, ref: forwardedRef }) }) });
+    }
+  );
+  RovingFocusGroup.displayName = GROUP_NAME;
+  var RovingFocusGroupImpl = reactExports.forwardRef((props, forwardedRef) => {
+    const {
+      __scopeRovingFocusGroup,
+      orientation,
+      loop = false,
+      dir,
+      currentTabStopId: currentTabStopIdProp,
+      defaultCurrentTabStopId,
+      onCurrentTabStopIdChange,
+      onEntryFocus,
+      preventScrollOnEntryFocus = false,
+      ...groupProps
+    } = props;
+    const ref = reactExports.useRef(null);
+    const composedRefs = useComposedRefs$1(forwardedRef, ref);
+    const direction = useDirection(dir);
+    const [currentTabStopId, setCurrentTabStopId] = useControllableState$1({
+      prop: currentTabStopIdProp,
+      defaultProp: defaultCurrentTabStopId ?? null,
+      onChange: onCurrentTabStopIdChange,
+      caller: GROUP_NAME
+    });
+    const [isTabbingBackOut, setIsTabbingBackOut] = reactExports.useState(false);
+    const handleEntryFocus = useCallbackRef$2(onEntryFocus);
+    const getItems = useCollection$1(__scopeRovingFocusGroup);
+    const isClickFocusRef = reactExports.useRef(false);
+    const [focusableItemsCount, setFocusableItemsCount] = reactExports.useState(0);
+    reactExports.useEffect(() => {
+      const node = ref.current;
+      if (node) {
+        node.addEventListener(ENTRY_FOCUS, handleEntryFocus);
+        return () => node.removeEventListener(ENTRY_FOCUS, handleEntryFocus);
+      }
+    }, [handleEntryFocus]);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
+      RovingFocusProvider,
       {
-        className: `inline-flex h-10 items-center justify-center rounded-md bg-gray-100 p-1 text-gray-500 w-full ${className || ""}`,
-        style: style2,
-        children
+        scope: __scopeRovingFocusGroup,
+        orientation,
+        dir: direction,
+        loop,
+        currentTabStopId,
+        onItemFocus: reactExports.useCallback(
+          (tabStopId) => setCurrentTabStopId(tabStopId),
+          [setCurrentTabStopId]
+        ),
+        onItemShiftTab: reactExports.useCallback(() => setIsTabbingBackOut(true), []),
+        onFocusableItemAdd: reactExports.useCallback(
+          () => setFocusableItemsCount((prevCount) => prevCount + 1),
+          []
+        ),
+        onFocusableItemRemove: reactExports.useCallback(
+          () => setFocusableItemsCount((prevCount) => prevCount - 1),
+          []
+        ),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Primitive.div,
+          {
+            tabIndex: isTabbingBackOut || focusableItemsCount === 0 ? -1 : 0,
+            "data-orientation": orientation,
+            ...groupProps,
+            ref: composedRefs,
+            style: { outline: "none", ...props.style },
+            onMouseDown: composeEventHandlers(props.onMouseDown, () => {
+              isClickFocusRef.current = true;
+            }),
+            onFocus: composeEventHandlers(props.onFocus, (event) => {
+              const isKeyboardFocus = !isClickFocusRef.current;
+              if (event.target === event.currentTarget && isKeyboardFocus && !isTabbingBackOut) {
+                const entryFocusEvent = new CustomEvent(ENTRY_FOCUS, EVENT_OPTIONS);
+                event.currentTarget.dispatchEvent(entryFocusEvent);
+                if (!entryFocusEvent.defaultPrevented) {
+                  const items = getItems().filter((item) => item.focusable);
+                  const activeItem = items.find((item) => item.active);
+                  const currentItem = items.find((item) => item.id === currentTabStopId);
+                  const candidateItems = [activeItem, currentItem, ...items].filter(
+                    Boolean
+                  );
+                  const candidateNodes = candidateItems.map((item) => item.ref.current);
+                  focusFirst(candidateNodes, preventScrollOnEntryFocus);
+                }
+              }
+              isClickFocusRef.current = false;
+            }),
+            onBlur: composeEventHandlers(props.onBlur, () => setIsTabbingBackOut(false))
+          }
+        )
       }
     );
-  };
-  const TabsTrigger = ({ value, children, disabled = false, className }) => {
-    const context = React$3.useContext(TabsContext);
-    if (!context) {
-      throw new Error("TabsTrigger must be used within Tabs");
+  });
+  var ITEM_NAME$1 = "RovingFocusGroupItem";
+  var RovingFocusGroupItem = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      const {
+        __scopeRovingFocusGroup,
+        focusable = true,
+        active = false,
+        tabStopId,
+        children,
+        ...itemProps
+      } = props;
+      const autoId = useId();
+      const id2 = tabStopId || autoId;
+      const context = useRovingFocusContext(ITEM_NAME$1, __scopeRovingFocusGroup);
+      const isCurrentTabStop = context.currentTabStopId === id2;
+      const getItems = useCollection$1(__scopeRovingFocusGroup);
+      const { onFocusableItemAdd, onFocusableItemRemove, currentTabStopId } = context;
+      reactExports.useEffect(() => {
+        if (focusable) {
+          onFocusableItemAdd();
+          return () => onFocusableItemRemove();
+        }
+      }, [focusable, onFocusableItemAdd, onFocusableItemRemove]);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Collection$1.ItemSlot,
+        {
+          scope: __scopeRovingFocusGroup,
+          id: id2,
+          focusable,
+          active,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Primitive.span,
+            {
+              tabIndex: isCurrentTabStop ? 0 : -1,
+              "data-orientation": context.orientation,
+              ...itemProps,
+              ref: forwardedRef,
+              onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+                if (!focusable) event.preventDefault();
+                else context.onItemFocus(id2);
+              }),
+              onFocus: composeEventHandlers(props.onFocus, () => context.onItemFocus(id2)),
+              onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+                if (event.key === "Tab" && event.shiftKey) {
+                  context.onItemShiftTab();
+                  return;
+                }
+                if (event.target !== event.currentTarget) return;
+                const focusIntent = getFocusIntent(event, context.orientation, context.dir);
+                if (focusIntent !== void 0) {
+                  if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+                  event.preventDefault();
+                  const items = getItems().filter((item) => item.focusable);
+                  let candidateNodes = items.map((item) => item.ref.current);
+                  if (focusIntent === "last") candidateNodes.reverse();
+                  else if (focusIntent === "prev" || focusIntent === "next") {
+                    if (focusIntent === "prev") candidateNodes.reverse();
+                    const currentIndex = candidateNodes.indexOf(event.currentTarget);
+                    candidateNodes = context.loop ? wrapArray(candidateNodes, currentIndex + 1) : candidateNodes.slice(currentIndex + 1);
+                  }
+                  setTimeout(() => focusFirst(candidateNodes));
+                }
+              }),
+              children: typeof children === "function" ? children({ isCurrentTabStop, hasTabStop: currentTabStopId != null }) : children
+            }
+          )
+        }
+      );
     }
-    const { value: selectedValue, onValueChange } = context;
-    const isSelected = selectedValue === value;
+  );
+  RovingFocusGroupItem.displayName = ITEM_NAME$1;
+  var MAP_KEY_TO_FOCUS_INTENT = {
+    ArrowLeft: "prev",
+    ArrowUp: "prev",
+    ArrowRight: "next",
+    ArrowDown: "next",
+    PageUp: "first",
+    Home: "first",
+    PageDown: "last",
+    End: "last"
+  };
+  function getDirectionAwareKey(key, dir) {
+    if (dir !== "rtl") return key;
+    return key === "ArrowLeft" ? "ArrowRight" : key === "ArrowRight" ? "ArrowLeft" : key;
+  }
+  function getFocusIntent(event, orientation, dir) {
+    const key = getDirectionAwareKey(event.key, dir);
+    if (orientation === "vertical" && ["ArrowLeft", "ArrowRight"].includes(key)) return void 0;
+    if (orientation === "horizontal" && ["ArrowUp", "ArrowDown"].includes(key)) return void 0;
+    return MAP_KEY_TO_FOCUS_INTENT[key];
+  }
+  function focusFirst(candidates, preventScroll = false) {
+    const PREVIOUSLY_FOCUSED_ELEMENT = document.activeElement;
+    for (const candidate of candidates) {
+      if (candidate === PREVIOUSLY_FOCUSED_ELEMENT) return;
+      candidate.focus({ preventScroll });
+      if (document.activeElement !== PREVIOUSLY_FOCUSED_ELEMENT) return;
+    }
+  }
+  function wrapArray(array, startIndex) {
+    return array.map((_, index2) => array[(startIndex + index2) % array.length]);
+  }
+  var Root$2 = RovingFocusGroup;
+  var Item$1 = RovingFocusGroupItem;
+  function useStateMachine(initialState, machine) {
+    return reactExports.useReducer((state, event) => {
+      const nextState = machine[state][event];
+      return nextState ?? state;
+    }, initialState);
+  }
+  var Presence = (props) => {
+    const { present, children } = props;
+    const presence = usePresence(present);
+    const child = typeof children === "function" ? children({ present: presence.isPresent }) : reactExports.Children.only(children);
+    const ref = useComposedRefs$1(presence.ref, getElementRef(child));
+    const forceMount = typeof children === "function";
+    return forceMount || presence.isPresent ? reactExports.cloneElement(child, { ref }) : null;
+  };
+  Presence.displayName = "Presence";
+  function usePresence(present) {
+    const [node, setNode] = reactExports.useState();
+    const stylesRef = reactExports.useRef(null);
+    const prevPresentRef = reactExports.useRef(present);
+    const prevAnimationNameRef = reactExports.useRef("none");
+    const initialState = present ? "mounted" : "unmounted";
+    const [state, send] = useStateMachine(initialState, {
+      mounted: {
+        UNMOUNT: "unmounted",
+        ANIMATION_OUT: "unmountSuspended"
+      },
+      unmountSuspended: {
+        MOUNT: "mounted",
+        ANIMATION_END: "unmounted"
+      },
+      unmounted: {
+        MOUNT: "mounted"
+      }
+    });
+    reactExports.useEffect(() => {
+      const currentAnimationName = getAnimationName(stylesRef.current);
+      prevAnimationNameRef.current = state === "mounted" ? currentAnimationName : "none";
+    }, [state]);
+    useLayoutEffect2(() => {
+      const styles = stylesRef.current;
+      const wasPresent = prevPresentRef.current;
+      const hasPresentChanged = wasPresent !== present;
+      if (hasPresentChanged) {
+        const prevAnimationName = prevAnimationNameRef.current;
+        const currentAnimationName = getAnimationName(styles);
+        if (present) {
+          send("MOUNT");
+        } else if (currentAnimationName === "none" || (styles == null ? void 0 : styles.display) === "none") {
+          send("UNMOUNT");
+        } else {
+          const isAnimating = prevAnimationName !== currentAnimationName;
+          if (wasPresent && isAnimating) {
+            send("ANIMATION_OUT");
+          } else {
+            send("UNMOUNT");
+          }
+        }
+        prevPresentRef.current = present;
+      }
+    }, [present, send]);
+    useLayoutEffect2(() => {
+      if (node) {
+        let timeoutId;
+        const ownerWindow = node.ownerDocument.defaultView ?? window;
+        const handleAnimationEnd = (event) => {
+          const currentAnimationName = getAnimationName(stylesRef.current);
+          const isCurrentAnimation = currentAnimationName.includes(CSS.escape(event.animationName));
+          if (event.target === node && isCurrentAnimation) {
+            send("ANIMATION_END");
+            if (!prevPresentRef.current) {
+              const currentFillMode = node.style.animationFillMode;
+              node.style.animationFillMode = "forwards";
+              timeoutId = ownerWindow.setTimeout(() => {
+                if (node.style.animationFillMode === "forwards") {
+                  node.style.animationFillMode = currentFillMode;
+                }
+              });
+            }
+          }
+        };
+        const handleAnimationStart = (event) => {
+          if (event.target === node) {
+            prevAnimationNameRef.current = getAnimationName(stylesRef.current);
+          }
+        };
+        node.addEventListener("animationstart", handleAnimationStart);
+        node.addEventListener("animationcancel", handleAnimationEnd);
+        node.addEventListener("animationend", handleAnimationEnd);
+        return () => {
+          ownerWindow.clearTimeout(timeoutId);
+          node.removeEventListener("animationstart", handleAnimationStart);
+          node.removeEventListener("animationcancel", handleAnimationEnd);
+          node.removeEventListener("animationend", handleAnimationEnd);
+        };
+      } else {
+        send("ANIMATION_END");
+      }
+    }, [node, send]);
+    return {
+      isPresent: ["mounted", "unmountSuspended"].includes(state),
+      ref: reactExports.useCallback((node2) => {
+        stylesRef.current = node2 ? getComputedStyle(node2) : null;
+        setNode(node2);
+      }, [])
+    };
+  }
+  function getAnimationName(styles) {
+    return (styles == null ? void 0 : styles.animationName) || "none";
+  }
+  function getElementRef(element) {
+    var _a, _b;
+    let getter = (_a = Object.getOwnPropertyDescriptor(element.props, "ref")) == null ? void 0 : _a.get;
+    let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+    if (mayWarn) {
+      return element.ref;
+    }
+    getter = (_b = Object.getOwnPropertyDescriptor(element, "ref")) == null ? void 0 : _b.get;
+    mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+    if (mayWarn) {
+      return element.props.ref;
+    }
+    return element.props.ref || element.ref;
+  }
+  var TABS_NAME = "Tabs";
+  var [createTabsContext, createTabsScope] = createContextScope(TABS_NAME, [
+    createRovingFocusGroupScope
+  ]);
+  var useRovingFocusGroupScope = createRovingFocusGroupScope();
+  var [TabsProvider, useTabsContext] = createTabsContext(TABS_NAME);
+  var Tabs$1 = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      const {
+        __scopeTabs,
+        value: valueProp,
+        onValueChange,
+        defaultValue,
+        orientation = "horizontal",
+        dir,
+        activationMode = "automatic",
+        ...tabsProps
+      } = props;
+      const direction = useDirection(dir);
+      const [value, setValue] = useControllableState$1({
+        prop: valueProp,
+        onChange: onValueChange,
+        defaultProp: defaultValue ?? "",
+        caller: TABS_NAME
+      });
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        TabsProvider,
+        {
+          scope: __scopeTabs,
+          baseId: useId(),
+          value,
+          onValueChange: setValue,
+          orientation,
+          dir: direction,
+          activationMode,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Primitive.div,
+            {
+              dir: direction,
+              "data-orientation": orientation,
+              ...tabsProps,
+              ref: forwardedRef
+            }
+          )
+        }
+      );
+    }
+  );
+  Tabs$1.displayName = TABS_NAME;
+  var TAB_LIST_NAME = "TabsList";
+  var TabsList$1 = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      const { __scopeTabs, loop = true, ...listProps } = props;
+      const context = useTabsContext(TAB_LIST_NAME, __scopeTabs);
+      const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Root$2,
+        {
+          asChild: true,
+          ...rovingFocusGroupScope,
+          orientation: context.orientation,
+          dir: context.dir,
+          loop,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Primitive.div,
+            {
+              role: "tablist",
+              "aria-orientation": context.orientation,
+              ...listProps,
+              ref: forwardedRef
+            }
+          )
+        }
+      );
+    }
+  );
+  TabsList$1.displayName = TAB_LIST_NAME;
+  var TRIGGER_NAME$2 = "TabsTrigger";
+  var TabsTrigger$1 = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      const { __scopeTabs, value, disabled = false, ...triggerProps } = props;
+      const context = useTabsContext(TRIGGER_NAME$2, __scopeTabs);
+      const rovingFocusGroupScope = useRovingFocusGroupScope(__scopeTabs);
+      const triggerId = makeTriggerId(context.baseId, value);
+      const contentId = makeContentId(context.baseId, value);
+      const isSelected = value === context.value;
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Item$1,
+        {
+          asChild: true,
+          ...rovingFocusGroupScope,
+          focusable: !disabled,
+          active: isSelected,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Primitive.button,
+            {
+              type: "button",
+              role: "tab",
+              "aria-selected": isSelected,
+              "aria-controls": contentId,
+              "data-state": isSelected ? "active" : "inactive",
+              "data-disabled": disabled ? "" : void 0,
+              disabled,
+              id: triggerId,
+              ...triggerProps,
+              ref: forwardedRef,
+              onMouseDown: composeEventHandlers(props.onMouseDown, (event) => {
+                if (!disabled && event.button === 0 && event.ctrlKey === false) {
+                  context.onValueChange(value);
+                } else {
+                  event.preventDefault();
+                }
+              }),
+              onKeyDown: composeEventHandlers(props.onKeyDown, (event) => {
+                if ([" ", "Enter"].includes(event.key)) context.onValueChange(value);
+              }),
+              onFocus: composeEventHandlers(props.onFocus, () => {
+                const isAutomaticActivation = context.activationMode !== "manual";
+                if (!isSelected && !disabled && isAutomaticActivation) {
+                  context.onValueChange(value);
+                }
+              })
+            }
+          )
+        }
+      );
+    }
+  );
+  TabsTrigger$1.displayName = TRIGGER_NAME$2;
+  var CONTENT_NAME$2 = "TabsContent";
+  var TabsContent$1 = reactExports.forwardRef(
+    (props, forwardedRef) => {
+      const { __scopeTabs, value, forceMount, children, ...contentProps } = props;
+      const context = useTabsContext(CONTENT_NAME$2, __scopeTabs);
+      const triggerId = makeTriggerId(context.baseId, value);
+      const contentId = makeContentId(context.baseId, value);
+      const isSelected = value === context.value;
+      const isMountAnimationPreventedRef = reactExports.useRef(isSelected);
+      reactExports.useEffect(() => {
+        const rAF = requestAnimationFrame(() => isMountAnimationPreventedRef.current = false);
+        return () => cancelAnimationFrame(rAF);
+      }, []);
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isSelected, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.div,
+        {
+          "data-state": isSelected ? "active" : "inactive",
+          "data-orientation": context.orientation,
+          role: "tabpanel",
+          "aria-labelledby": triggerId,
+          hidden: !present,
+          id: contentId,
+          tabIndex: 0,
+          ...contentProps,
+          ref: forwardedRef,
+          style: {
+            ...props.style,
+            animationDuration: isMountAnimationPreventedRef.current ? "0s" : void 0
+          },
+          children: present && children
+        }
+      ) });
+    }
+  );
+  TabsContent$1.displayName = CONTENT_NAME$2;
+  function makeTriggerId(baseId, value) {
+    return `${baseId}-trigger-${value}`;
+  }
+  function makeContentId(baseId, value) {
+    return `${baseId}-content-${value}`;
+  }
+  var Root2$1 = Tabs$1;
+  var List = TabsList$1;
+  var Trigger$1 = TabsTrigger$1;
+  var Content$1 = TabsContent$1;
+  function Tabs({
+    className,
+    ...props
+  }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "button",
+      Root2$1,
       {
-        type: "button",
-        disabled,
-        onClick: () => onValueChange(value),
-        className: `inline-flex items-center justify-center whitespace-nowrap rounded-sm px-2 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 min-w-0 flex-shrink ${isSelected ? "bg-white text-gray-950 shadow-sm" : "text-gray-600 hover:bg-gray-200"} ${className || ""}`,
-        style: {
-          flex: "1 1 0",
-          minWidth: "60px",
-          maxWidth: "120px"
-        },
-        children
+        "data-slot": "tabs",
+        className: cn("flex flex-col gap-2", className),
+        ...props
       }
     );
-  };
-  const TabsContent = ({ value, children, className }) => {
-    const context = React$3.useContext(TabsContext);
-    if (!context) {
-      throw new Error("TabsContent must be used within Tabs");
-    }
-    const { value: selectedValue } = context;
-    if (selectedValue !== value) {
-      return null;
-    }
+  }
+  function TabsList({
+    className,
+    ...props
+  }) {
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
+      List,
       {
-        className: `mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 ${className || ""}`,
-        children
+        "data-slot": "tabs-list",
+        className: cn(
+          "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]",
+          className
+        ),
+        ...props
       }
     );
-  };
+  }
+  function TabsTrigger({
+    className,
+    ...props
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Trigger$1,
+      {
+        "data-slot": "tabs-trigger",
+        className: cn(
+          "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+  function TabsContent({
+    className,
+    ...props
+  }) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Content$1,
+      {
+        "data-slot": "tabs-content",
+        className: cn("flex-1 outline-none", className),
+        ...props
+      }
+    );
+  }
   const ImageGrid = ({
     images,
     selectedImage,
@@ -28270,7 +28794,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   function Dialog({
     ...props
   }) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$4, { "data-slot": "dialog", ...props });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$5, { "data-slot": "dialog", ...props });
   }
   function DialogPortal({
     ...props
@@ -28302,7 +28826,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     return /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogPortal, { "data-slot": "dialog-portal", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlay, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Content$3,
+        Content$4,
         {
           "data-slot": "dialog-content",
           className: cn(
@@ -30925,7 +31449,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
         type,
         "data-slot": "input",
         className: cn(
-          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
           className
@@ -31561,7 +32085,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
           disabled: context.disabled,
           ...triggerProps,
           ref: forwardedRef,
-          onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
+          onClick: composeEventHandlers$1(props.onClick, context.onOpenToggle)
         }
       );
     }
@@ -31572,7 +32096,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     (props, forwardedRef) => {
       const { forceMount, ...contentProps } = props;
       const context = useCollapsibleContext(CONTENT_NAME$1, props.__scopeCollapsible);
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(CollapsibleContentImpl, { ...contentProps, ref: forwardedRef, present }) });
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence$1, { present: forceMount || context.open, children: ({ present }) => /* @__PURE__ */ jsxRuntimeExports.jsx(CollapsibleContentImpl, { ...contentProps, ref: forwardedRef, present }) });
     }
   );
   CollapsibleContent.displayName = CONTENT_NAME$1;
@@ -31728,7 +32252,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       const getItems = useCollection(__scopeAccordion);
       const direction = useDirection(dir);
       const isDirectionLTR = direction === "ltr";
-      const handleKeyDown = composeEventHandlers(props.onKeyDown, (event) => {
+      const handleKeyDown = composeEventHandlers$1(props.onKeyDown, (event) => {
         var _a;
         if (!ACCORDION_KEYS.includes(event.key)) return;
         const target = event.target;
@@ -31959,18 +32483,13 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
       {
         "data-slot": "accordion-trigger",
         className: cn(
-          "flex flex-1 items-center justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
+          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
           className
         ),
         ...props,
         children: [
           children,
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            ChevronDown,
-            {
-              className: "text-gray-400 pointer-events-none h-4 w-4 shrink-0 transition-transform duration-200"
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronDown, { className: "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" })
         ]
       }
     ) });
@@ -35777,6 +36296,93 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
     }
   );
   ScrollContainer.displayName = "ScrollContainer";
+  const COPY_OPTIONS = [
+    {
+      id: "wechat",
+      name: "微信公众号",
+      description: "复制为适合微信公众号的格式",
+      icon: "📱"
+    },
+    {
+      id: "html",
+      name: "HTML格式",
+      description: "复制为标准HTML格式",
+      icon: "📄"
+    },
+    {
+      id: "image",
+      name: "图片",
+      description: "生成并复制为图片",
+      icon: "🖼️"
+    },
+    {
+      id: "zhihu",
+      name: "知乎",
+      description: "复制为适合知乎的格式",
+      icon: "🎓"
+    },
+    {
+      id: "xiaohongshu",
+      name: "小红书",
+      description: "复制为适合小红书的格式",
+      icon: "📕"
+    }
+  ];
+  const CopySplitButton = ({
+    onCopy,
+    currentOption,
+    className = ""
+  }) => {
+    const [selectedOption, setSelectedOption] = reactExports.useState(currentOption || COPY_OPTIONS[0]);
+    const handleMainClick = () => {
+      console.log("🎯 [CopySplitButton] Main button clicked, selectedOption:", selectedOption);
+      onCopy(selectedOption);
+    };
+    const handleValueChange = (value) => {
+      console.log("🎯 [CopySplitButton] Dropdown value changed to:", value);
+      const option = COPY_OPTIONS.find((o) => o.id === value);
+      console.log("🎯 [CopySplitButton] Found option:", option);
+      if (option) {
+        setSelectedOption(option);
+        onCopy(option);
+      }
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `flex ${className}`, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          onClick: handleMainClick,
+          size: "sm",
+          className: "rounded-r-none border-r-0 bg-white/60 backdrop-blur-sm border border-[#E8E6DC]/50 text-[#87867F]/70 transition-all hover:bg-[#D97757] hover:text-white hover:scale-105 hover:shadow-md hover:border-[#D97757] focus:outline-none focus:ring-2 focus:ring-[#D97757]/50 focus:ring-offset-2",
+          title: `复制到${selectedOption.name}`,
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mr-1.5", children: selectedOption.icon }),
+            "复制"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Select, { value: "", onValueChange: handleValueChange, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          SelectTrigger,
+          {
+            size: "sm",
+            className: "w-8 rounded-l-none px-1 border-l-0 bg-white/60 backdrop-blur-sm border border-[#E8E6DC]/50 text-[#87867F]/70 hover:bg-[#D97757] hover:text-white hover:border-[#D97757]",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(SelectValue, {})
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(SelectContent, { align: "end", className: "w-72", children: COPY_OPTIONS.map((option) => /* @__PURE__ */ jsxRuntimeExports.jsx(SelectItem, { value: option.id, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-3 py-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-lg flex-shrink-0", children: option.icon }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium text-gray-900 text-sm", children: option.name }),
+              selectedOption.id === option.id && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "inline-block w-2 h-2 bg-[#D97757] rounded-full flex-shrink-0" })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-gray-500 leading-relaxed", children: option.description })
+          ] })
+        ] }) }, option.id)) })
+      ] })
+    ] });
+  };
   const LovpenReact2 = (props) => {
     const {
       settings,
@@ -35904,7 +36510,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
                 display: "flex",
                 flexDirection: "column"
               },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "10px", position: "relative" }, children: [
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lovpen-content-container", style: { position: "relative" }, children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: {
                   position: "absolute",
                   top: 0,
@@ -35912,15 +36518,12 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
                   zIndex: 40,
                   padding: "16px"
                 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "button",
+                  CopySplitButton,
                   {
-                    onClick: onCopy,
-                    className: "inline-flex items-center justify-center w-9 h-9 bg-white/60 backdrop-blur-sm border border-[#E8E6DC]/50 text-[#87867F]/70 rounded-xl shadow-sm transition-all hover:bg-[#D97757] hover:text-white hover:scale-105 hover:shadow-md hover:border-[#D97757] focus:outline-none focus:ring-2 focus:ring-[#D97757]/50 focus:ring-offset-2",
-                    title: "复制内容",
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className: "h-3.5 w-3.5", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" })
-                    ] })
+                    onCopy: (option) => {
+                      console.log("🎯 [LovpenReact] onCopy called with option:", option, "id:", option.id);
+                      onCopy(option.id);
+                    }
                   }
                 ) }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx("style", { dangerouslySetInnerHTML: { __html: `
