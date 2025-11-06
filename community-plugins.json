@@ -12,5 +12,6 @@
   "lovpen",
   "templater-obsidian",
   "obsidian-underline",
-  "terminal"
+  "terminal",
+  "obsidian-linter"
 ]
